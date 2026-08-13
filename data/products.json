@@ -1,0 +1,48 @@
+{
+  "products": [
+    {
+      "id": "camiseta-marrom-simples",
+      "name": "Camiseta Marrom Simples",
+      "category": "Camiseta",
+      "sizes": ["P", "M", "G", "GG"],
+      "colors": ["Marrom"],
+      "image": "/assets/products/camisetas/4 - camisaLamitMarromSimples.png",
+      "price": null,
+      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Marrom+Simples"
+    },
+    {
+      "id": "camiseta-brasao-preta",
+      "name": "Camiseta Brasão Preta",
+      "category": "Camiseta",
+      "sizes": ["P", "M", "G", "GG"],
+      "colors": ["Preta"],
+      "image": "/assets/products/camisetas/5 - camisaLamitBrasãoPreta.png",
+      "price": null,
+      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Brasao+Preta"
+    },
+    {
+      "id": "camiseta-salvador",
+      "name": "Camiseta Salvador",
+      "category": "Camiseta",
+      "sizes": ["P", "M", "G", "GG"],
+      "colors": ["Azul", "Dourada", "Preta"],
+      "image": "/assets/products/camisetas/6 - camisaLamitSalvadorAzul.png",
+      "price": null,
+      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Salvador"
+    },
+    {
+      "id": "ecobag",
+      "name": "Ecobag LAMIT",
+      "category": "Ecobag",
+      "sizes": [],
+      "colors": [],
+      "image": "",
+      "price": null,
+      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Ecobag"
+    }
+  ]
+}

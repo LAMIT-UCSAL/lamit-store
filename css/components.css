@@ -40,3 +40,67 @@
 .card:focus-visible {
   transform: translateY(-4px) rotate(-0.5deg);
 }
+
+/* Bloco "O que é a LAMIT" */
+.intro {
+  padding: var(--space-md) 0;
+}
+
+/* Grid de produtos — 1 coluna no mobile, 2+ no desktop */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+}
+
+@media (min-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.product-card__image-wrap {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--color-border);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+}
+
+.product-card__info {
+  padding: var(--space-sm);
+}
+
+.product-card__name {
+  font-size: var(--font-size-body);
+}
+
+.product-card__category {
+  font-size: var(--font-size-small);
+}
+
+footer {
+  padding: var(--space-md);
+  text-align: center;
+}

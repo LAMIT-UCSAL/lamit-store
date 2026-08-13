@@ -1,0 +1,45 @@
+schema: 1
+story: '1.2'
+story_title: 'Sistema de Identidade Visual LAMIT'
+gate: PASS
+status_reason: 'Tokens, logos e estilos base implementados corretamente. O dev identificou e corrigiu um problema real de contraste WCAG no botão base; QA reverificou o cálculo de forma independente e confirmou a correção.'
+reviewer: 'Quinn (Test Architect)'
+reviewed_revision: 'working-tree-pre-commit'
+updated: '2026-08-13T00:00:00Z'
+
+top_issues: []
+waiver: { active: false }
+
+quality_score: 100
+expires: '2026-08-27T00:00:00Z'
+
+evidence:
+  tests_reviewed: 0
+  risks_identified: 1
+  trace:
+    ac_covered: [1, 2, 3]
+    ac_gaps: []
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: 'Apenas CSS e assets estáticos, sem superfície de risco.'
+  performance:
+    status: PASS
+    notes: 'Sem mudança de peso relevante.'
+  reliability:
+    status: PASS
+    notes: 'Nenhuma referência quebrada após mover os logos; verificado por busca no código.'
+  maintainability:
+    status: PASS
+    notes: 'Zero cores hardcoded fora de tokens.css (verificado); placeholders de tipografia/espaçamento claramente marcados como não-finais.'
+
+recommendations:
+  immediate: []
+  future:
+    - action: 'Revalidar contraste do botão/CTA quando o Epic 2 implementar o uso real (CTA "Pedir"), caso a cor de texto mude por qualquer motivo'
+      refs: ['css/components.css']
+
+coderabbit:
+  status: 'unavailable'
+  notes: 'CLI não instalado neste ambiente — self-healing pulado, registrado como limitação de ambiente.'

@@ -41,7 +41,7 @@ Usuário navega um catálogo pequeno como se estivesse em um e-commerce comum (v
 LAMIT = Liga Acadêmica de Maratonas, Inovação e Tecnologia (liga acadêmica multidisciplinar da UCSAL). Identidade oficial já definida e fornecida pelo usuário em `assets/` — vinculante, não deve ser reinventada:
 
 - Guia de marca completo: `assets/lamit-brand-skill/lamit-brand/SKILL.md` + `references/lamit-institucional.md` (posicionamento, tom de voz, identidade visual institucional) + `references/imersao-lamit.md` (guia do evento-âncora Imersão LAMIT, fora do escopo direto da loja mas útil como referência de voz/paleta).
-- Arquivos de logo: `assets/01_LAMIT_HORIZONTAL.png`, `assets/02_LAMIT_VERTICAL.png`, `assets/03_LAMIT_ESCUDO.png`, `assets/lamitEscudoVazadoBranco.png`, `assets/lamitEscudoVazadoAzul.svg`.
+- Arquivos de logo: `assets/logos/01_LAMIT_HORIZONTAL.png`, `assets/logos/02_LAMIT_VERTICAL.png`, `assets/logos/03_LAMIT_ESCUDO.png`, `assets/logos/lamitEscudoVazadoBranco.png`, `assets/logos/lamitEscudoVazadoAzul.svg` (movidos pra subpasta na Story 1.2).
 - Posicionamento confirmado: "a LAMIT não vende eventos, cria experiências" — comunicação nunca corporativa/vendedora, sempre como alguém de dentro da comunidade.
 - Trabalho visual futuro (new-work/DESIGN.md) deve consultar o guia de marca acima diretamente para paleta, tipografia e linguagem gráfica (estética scrapbook/editorial/artesanal) em vez de essas decisões serem re-derivadas aqui.
 

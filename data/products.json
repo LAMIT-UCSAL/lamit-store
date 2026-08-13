@@ -19,7 +19,7 @@
       "description": "Camiseta oversized na cor marrom, com o logotipo LAMIT estampado no peito em branco.",
       "price": null,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://forms.gle/fXtUpnhuPxxZenYo7"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Marrom+Simples"
     },
     {
       "id": "camiseta-brasao-preta",
@@ -40,11 +40,11 @@
       "description": "Camiseta oversized preta, com o brasão da LAMIT estampado no peito e \"LAMIT\" grafado nas mangas em laranja, estilo escrita à mão.",
       "price": null,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://forms.gle/fXtUpnhuPxxZenYo7"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Bras%C3%A3o+Preta"
     },
     {
       "id": "camiseta-salvador",
-      "name": "Camiseta Salvador",
+      "name": "Camiseta Estampa Salvador",
       "category": "Camiseta",
       "sizes": [
         "P",
@@ -65,7 +65,7 @@
       "description": "Camiseta com o logotipo LAMIT no peito e uma ilustração no verso inspirada em Salvador — um farol, coqueiros, barcos e o pôr do sol. Disponível em 3 variações: Azul (estampa navy/laranja em camiseta branca), Dourada (estampa dourada em camiseta branca) e Preta (estampa branca em camiseta preta).",
       "price": null,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://forms.gle/fXtUpnhuPxxZenYo7"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Estampa+Salvador"
     },
     {
       "id": "ecobag",
@@ -77,7 +77,7 @@
       "description": "Descrição em breve.",
       "price": null,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://forms.gle/fXtUpnhuPxxZenYo7"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Ecobag+Lamit"
     }
   ]
 }

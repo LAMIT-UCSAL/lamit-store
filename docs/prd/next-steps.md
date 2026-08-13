@@ -16,4 +16,4 @@ Adicionado pelo `@po` durante a validação de artefatos — nada aqui é tarefa
 - Criar o Google Forms de pedido, incluindo a pergunta "Qual produto você está pedindo?" com as 4 opções, e obter o `entry ID` dessa pergunta — necessário pra montar os links pré-preenchidos usados em `data/products.json` (ver decisão em `docs/ui-architecture.md`, seção API Integration).
 - Configurar a conta InfinitePay (Pix + link de cartão) e obter o link/QR code de pagamento a ser referenciado no fluxo do Forms.
 - Fornecer, para substituir os placeholders em `data/products.json`: foto da ecobag, preços confirmados dos fornecedores, link final do Google Forms.
-- **Domínio:** decidido — lançamento no subdomínio padrão do Netlify (ex: `lamit-store.netlify.app`); migração para domínio próprio fica para depois, sem retrabalho necessário na arquitetura atual.
+- **Domínio:** decidido — lançamento no subdomínio padrão do Netlify (`lamitstore.netlify.app`); migração para domínio próprio fica para depois, sem retrabalho necessário na arquitetura atual.

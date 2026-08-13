@@ -16,7 +16,7 @@ Público que acompanha a LAMIT (redes sociais, comunidade UCSAL) e visitantes qu
 
 ## Product Purpose
 
-Vender produtos com a marca LAMIT (camisetas, moletons, ecobags, canecas e itens semelhantes) para fortalecer a identidade de marca da LAMIT. O site é um MVP focado na experiência de navegação do catálogo de produtos, como em um e-commerce real — sem gateway de pagamento nesta primeira versão. Primeiro drop: 3 modelos de camiseta + 1 modelo de ecobag.
+Vender produtos com a marca LAMIT (camisetas, moletons, ecobags, canecas e itens semelhantes) para fortalecer a identidade de marca da LAMIT. O site é um MVP focado na experiência de navegação do catálogo de produtos, como em um e-commerce real — sem checkout nativo integrado nesta primeira versão (pagamento via InfinitePay, fora do site). Primeiro drop: 3 modelos de camiseta + 1 modelo de ecobag. Data-alvo de lançamento: 17/08.
 
 ## Positioning
 
@@ -28,11 +28,13 @@ Usuário navega um catálogo pequeno como se estivesse em um e-commerce comum (v
 
 ## Capabilities and Constraints
 
-- Sem gateway de pagamento nesta versão — decisão explícita para o MVP.
-- Fluxo de finalização: usuário escolhe produto(s) no site → é redirecionado para um Google Forms (externo) para concluir o pedido.
+- Sem checkout nativo/gateway de pagamento integrado ao site nesta versão — decisão explícita para o MVP. O pagamento acontece via **InfinitePay** (Pix ou link de cartão), fora do site; o cliente anexa o comprovante de pagamento no próprio Google Forms antes de enviar a resposta.
+- Fluxo de finalização: usuário escolhe produto(s) no site → é redirecionado para um Google Forms (externo) → paga via InfinitePay → anexa o comprovante no Forms → envia o pedido.
+- Modelo de produção: produtos feitos sob demanda, com mínimo de 30 unidades por modelo repassadas ao fornecedor. Se o mínimo não for atingido em até 1 mês, o pedido segue com a quantidade real solicitada. Prazo de produção após o fornecedor receber os pedidos: ~2 semanas. Cada página de produto deve comunicar isso de forma transparente.
 - Catálogo do primeiro drop: 3 modelos de camiseta + 1 modelo de ecobag. Categorias futuras já mencionadas pelo usuário (moletons, canecas) não fazem parte deste drop, mas indicam para onde o catálogo deve crescer.
-- Projetado explicitamente como MVP a caminho de um e-commerce completo futuro — decisões de escopo/arquitetura não devem assumir que este fluxo (sem pagamento, com handoff para Forms) é permanente.
-- Ainda não existem: fotos/artes dos produtos e o link do Google Forms. Até serem fornecidos, o site precisa de placeholders — não inventar essas evidências.
+- Data-alvo de lançamento: 17/08 — desejável, não rígida.
+- Projetado explicitamente como MVP a caminho de um e-commerce completo futuro — decisões de escopo/arquitetura não devem assumir que este fluxo (sem checkout nativo, com handoff para Forms) é permanente.
+- Fotos dos 3 modelos de camiseta já fornecidas em `assets/products/camisetas/`. Ainda faltam: foto da ecobag e o link do Google Forms. Até serem fornecidos, o site precisa de placeholders explícitos — não inventar essas evidências.
 
 ## Brand Commitments
 
@@ -45,11 +47,11 @@ LAMIT = Liga Acadêmica de Maratonas, Inovação e Tecnologia (liga acadêmica m
 
 ## Evidence on Hand
 
-Assets de marca (logos + guia institucional completo) fornecidos em `assets/`, ver Brand Commitments. Ainda faltam: fotos/artes dos produtos (camisetas e ecobag do primeiro drop) e o link do Google Forms de pedido — até serem fornecidos, o site precisa de placeholders explícitos; não fabricar essas evidências.
+Assets de marca (logos + guia institucional completo) fornecidos em `assets/`, ver Brand Commitments. Fotos dos 3 modelos de camiseta fornecidas em `assets/products/camisetas/`. Ainda faltam: foto da ecobag do primeiro drop e o link do Google Forms de pedido — até serem fornecidos, o site precisa de placeholders explícitos; não fabricar essas evidências.
 
 ## Product Principles
 
-1. Escopo de MVP: navegação de catálogo apenas, sem integração de pagamento, checkout via handoff para Google Forms.
+1. Escopo de MVP: navegação de catálogo apenas, sem checkout nativo integrado, checkout via handoff para Google Forms + pagamento InfinitePay.
 2. A experiência deve parecer um e-commerce real na navegação, mesmo sem backend transacional.
 3. Prioridade de construção de marca — reforçar que a LAMIT é mais do que uma liga acadêmica.
 4. Construído para crescer — este MVP é um degrau para um e-commerce completo futuro; evitar decisões que precisem ser descartadas depois.

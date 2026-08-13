@@ -16,10 +16,10 @@ async function renderProductGrid() {
     const imageWrap = document.createElement('div');
     imageWrap.className = 'product-card__image-wrap';
 
-    if (product.image) {
+    if (product.images && product.images.length > 0) {
       const img = document.createElement('img');
       img.className = 'product-card__image';
-      img.src = product.image;
+      img.src = product.images[0];
       img.alt = product.name;
       img.loading = 'lazy';
       imageWrap.appendChild(img);

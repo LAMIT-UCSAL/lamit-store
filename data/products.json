@@ -6,7 +6,8 @@
       "category": "Camiseta",
       "sizes": ["P", "M", "G", "GG"],
       "colors": ["Marrom"],
-      "image": "/assets/products/camisetas/4 - camisaLamitMarromSimples.png",
+      "images": ["/assets/products/camisetas/4 - camisaLamitMarromSimples.png"],
+      "description": "Camiseta oversized na cor marrom, com o logotipo LAMIT estampado no peito em branco.",
       "price": null,
       "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Marrom+Simples"
@@ -17,7 +18,8 @@
       "category": "Camiseta",
       "sizes": ["P", "M", "G", "GG"],
       "colors": ["Preta"],
-      "image": "/assets/products/camisetas/5 - camisaLamitBrasãoPreta.png",
+      "images": ["/assets/products/camisetas/5 - camisaLamitBrasãoPreta.png"],
+      "description": "Camiseta oversized preta, com o brasão da LAMIT estampado no peito e \"LAMIT\" grafado nas mangas em laranja, estilo escrita à mão.",
       "price": null,
       "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Brasao+Preta"
@@ -28,7 +30,12 @@
       "category": "Camiseta",
       "sizes": ["P", "M", "G", "GG"],
       "colors": ["Azul", "Dourada", "Preta"],
-      "image": "/assets/products/camisetas/6 - camisaLamitSalvadorAzul.png",
+      "images": [
+        "/assets/products/camisetas/6 - camisaLamitSalvadorAzul.png",
+        "/assets/products/camisetas/6 - camisaLamitSalvadorDourada.png",
+        "/assets/products/camisetas/6 - camisaLamitSalvadorPreta.png"
+      ],
+      "description": "Camiseta com o logotipo LAMIT no peito e uma ilustração no verso inspirada em Salvador — um farol, coqueiros, barcos e o pôr do sol. Disponível em 3 variações: Azul (estampa navy/laranja em camiseta branca), Dourada (estampa dourada em camiseta branca) e Preta (estampa branca em camiseta preta).",
       "price": null,
       "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Salvador"
@@ -39,7 +46,8 @@
       "category": "Ecobag",
       "sizes": [],
       "colors": [],
-      "image": "",
+      "images": [],
+      "description": "Descrição em breve.",
       "price": null,
       "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Ecobag"

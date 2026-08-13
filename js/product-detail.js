@@ -68,6 +68,13 @@ async function renderProductDetail() {
   description.textContent = product.description;
   main.appendChild(description);
 
+  if (product.deliveryNote) {
+    const deliveryNote = document.createElement('p');
+    deliveryNote.className = 'product-detail__delivery-note';
+    deliveryNote.textContent = product.deliveryNote;
+    main.appendChild(deliveryNote);
+  }
+
   renderVariantList(main, 'Tamanhos', product.sizes);
   renderVariantList(main, 'Cores', product.colors);
 

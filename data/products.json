@@ -4,32 +4,59 @@
       "id": "camiseta-marrom-simples",
       "name": "Camiseta Marrom Simples",
       "category": "Camiseta",
-      "sizes": ["P", "M", "G", "GG"],
-      "colors": ["Marrom"],
-      "images": ["/assets/products/camisetas/4 - camisaLamitMarromSimples.png"],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "colors": [
+        "Marrom"
+      ],
+      "images": [
+        "/assets/products/camisetas/4 - camisaLamitMarromSimples.png"
+      ],
       "description": "Camiseta oversized na cor marrom, com o logotipo LAMIT estampado no peito em branco.",
       "price": null,
-      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Marrom+Simples"
     },
     {
       "id": "camiseta-brasao-preta",
       "name": "Camiseta Brasão Preta",
       "category": "Camiseta",
-      "sizes": ["P", "M", "G", "GG"],
-      "colors": ["Preta"],
-      "images": ["/assets/products/camisetas/5 - camisaLamitBrasãoPreta.png"],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "colors": [
+        "Preta"
+      ],
+      "images": [
+        "/assets/products/camisetas/5 - camisaLamitBrasãoPreta.png"
+      ],
       "description": "Camiseta oversized preta, com o brasão da LAMIT estampado no peito e \"LAMIT\" grafado nas mangas em laranja, estilo escrita à mão.",
       "price": null,
-      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Brasao+Preta"
     },
     {
       "id": "camiseta-salvador",
       "name": "Camiseta Salvador",
       "category": "Camiseta",
-      "sizes": ["P", "M", "G", "GG"],
-      "colors": ["Azul", "Dourada", "Preta"],
+      "sizes": [
+        "P",
+        "M",
+        "G",
+        "GG"
+      ],
+      "colors": [
+        "Azul",
+        "Dourada",
+        "Preta"
+      ],
       "images": [
         "/assets/products/camisetas/6 - camisaLamitSalvadorAzul.png",
         "/assets/products/camisetas/6 - camisaLamitSalvadorDourada.png",
@@ -37,7 +64,7 @@
       ],
       "description": "Camiseta com o logotipo LAMIT no peito e uma ilustração no verso inspirada em Salvador — um farol, coqueiros, barcos e o pôr do sol. Disponível em 3 variações: Azul (estampa navy/laranja em camiseta branca), Dourada (estampa dourada em camiseta branca) e Preta (estampa branca em camiseta preta).",
       "price": null,
-      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Camiseta+Salvador"
     },
     {
@@ -49,7 +76,7 @@
       "images": [],
       "description": "Descrição em breve.",
       "price": null,
-      "deliveryNote": "Pedidos deste modelo são enviados ao fornecedor ao atingir 30 unidades no total (ou após 1 mês). Produção: ~2 semanas após o envio.",
+      "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://forms.gle/PLACEHOLDER?entry.PRODUTO=Ecobag"
     }
   ]

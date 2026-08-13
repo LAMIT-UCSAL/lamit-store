@@ -75,6 +75,16 @@ async function renderProductDetail() {
     main.appendChild(deliveryNote);
   }
 
+  if (product.formsUrl) {
+    const cta = document.createElement('a');
+    cta.className = 'btn';
+    cta.href = product.formsUrl;
+    cta.target = '_blank';
+    cta.rel = 'noopener noreferrer';
+    cta.textContent = 'Pedir';
+    main.appendChild(cta);
+  }
+
   renderVariantList(main, 'Tamanhos', product.sizes);
   renderVariantList(main, 'Cores', product.colors);
 

@@ -1,0 +1,54 @@
+schema: 1
+story: '2.3'
+story_title: 'CTA "Pedir" com Redirecionamento ao Google Forms'
+gate: CONCERNS
+status_reason: 'AC1-3 verificadas e corretas (CTA presente, link real configurado, valor fácil de atualizar). AC4 (teste manual em navegador mobile/desktop real) não foi executada — é uma verificação estruturalmente impossível de automatizar, não um defeito de código. Aprovado com condição explícita registrada, não FAIL.'
+reviewer: 'Quinn (Test Architect)'
+reviewed_revision: 'working-tree-pre-commit'
+updated: '2026-08-13T00:00:00Z'
+
+top_issues:
+  - severity: medium
+    category: testing
+    description: 'AC4 (teste manual em pelo menos 1 navegador mobile real e 1 desktop real) não foi executada nesta sessão — requer ação humana antes do lançamento de 17/08.'
+    suggested_owner: 'po'
+    refs: ['js/product-detail.js']
+waiver: { active: false }
+
+quality_score: 90
+expires: '2026-08-20T00:00:00Z'
+
+evidence:
+  tests_reviewed: 0
+  risks_identified: 1
+  trace:
+    ac_covered: [1, 2, 3]
+    ac_gaps: [4]
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: 'target="_blank" com rel="noopener noreferrer" presente — mitiga reverse tabnabbing.'
+  performance:
+    status: PASS
+    notes: 'Sem impacto.'
+  reliability:
+    status: CONCERNS
+    notes: 'Comportamento de clique verificado via DOM (href/target/rel corretos), mas abertura real de nova aba em navegador de verdade não foi testada.'
+  maintainability:
+    status: PASS
+    notes: 'formsUrl centralizado em products.json, atualização futura não exige mudança de código.'
+
+recommendations:
+  immediate:
+    - action: 'Testar manualmente o clique do CTA em 1 navegador mobile real e 1 desktop real antes do lançamento de 17/08'
+      refs: ['js/product-detail.js']
+  future:
+    - action: 'Configurar a pergunta de produto no Google Forms e atualizar os 4 formsUrl com os links pré-preenchidos reais'
+      refs: ['data/products.json']
+
+coderabbit:
+  status: 'unavailable'
+  notes: 'CLI não instalado neste ambiente.'
+
+expiry_note: 'Prazo de expiração do gate encurtado (7 dias) por causa da recomendação immediate — este gate deve ser revisitado antes do lançamento de 17/08.'

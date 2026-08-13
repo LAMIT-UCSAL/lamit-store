@@ -124,7 +124,7 @@ A lamit-store se torna o e-commerce completo da LAMIT — com carrinho, checkout
 - **Prazo:** data-alvo de lançamento é 17/08 (não rígida, mas desejável).
 - **Recursos:** não informado quantas pessoas trabalham no projeto além do usuário.
 - **Técnico:** sem framework, sem backend, sem checkout nativo nesta fase — restrições deliberadas, não limitações de capacidade.
-- **Modelo de produção:** os produtos são feitos sob demanda, com quantidade mínima de 30 unidades por modelo para serem repassadas ao fornecedor. Se o mínimo não for atingido em até 1 mês, o pedido segue com a quantidade real solicitada. Prazo de produção após o fornecedor receber os pedidos: ~2 semanas.
+- **Modelo de produção:** os produtos são feitos sob demanda. Os pedidos de cada modelo são repassados ao fornecedor quando o total agregado (soma de todos os compradores) atinge 30 unidades, ou após 1 mês, com a quantidade então acumulada. Prazo de produção após o envio ao fornecedor: ~2 semanas. Importante: o limite de 30 é sobre o total de pedidos do modelo, não uma exigência de compra individual.
 
 ### Premissas-Chave
 
@@ -132,7 +132,7 @@ A lamit-store se torna o e-commerce completo da LAMIT — com carrinho, checkout
 - Fotos dos 3 modelos de camiseta já foram fornecidas (`assets/products/camisetas/`); falta a foto da ecobag e o link do Google Forms — o site precisa de placeholders até lá.
 - Preço dos produtos ainda depende de resposta dos fornecedores.
 - O público não pode ser assumido como já conhecendo a LAMIT — o site precisa contextualizar a marca minimamente.
-- Transparência é um valor explícito: o site deve deixar claro, produto a produto, que a produção é sob demanda e que o prazo de entrega varia conforme o pedido mínimo de 30 unidades ser atingido — sem prometer prazo fixo que não pode ser cumprido.
+- Transparência é um valor explícito: o site deve deixar claro, produto a produto, que a produção é sob demanda e que o prazo de entrega varia conforme o total agregado de pedidos daquele modelo atingir 30 unidades — sem sugerir que um único comprador precisa atingir esse número, e sem prometer prazo fixo que não pode ser cumprido.
 - Pagamento acontece via InfinitePay (Pix ou link de cartão), fora do site; o comprovante é anexado pelo cliente no próprio Google Forms antes de enviar a resposta.
 
 ## Riscos e Questões Abertas

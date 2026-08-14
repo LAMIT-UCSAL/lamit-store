@@ -158,3 +158,9 @@ footer {
   font-size: var(--font-size-small);
   color: var(--color-text);
 }
+
+.product-detail__price-note {
+  margin-top: var(--space-md);
+  font-weight: bold;
+  color: var(--color-text);
+}

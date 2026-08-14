@@ -75,6 +75,13 @@ async function renderProductDetail() {
     main.appendChild(deliveryNote);
   }
 
+  const priceNote = document.createElement('p');
+  priceNote.className = 'product-detail__price-note';
+  priceNote.textContent = product.price
+    ? `Preço: R$ ${product.price}`
+    : 'Preço em breve — você confirma o valor certinho antes de fechar o pedido, direto no formulário.';
+  main.appendChild(priceNote);
+
   if (product.formsUrl) {
     const cta = document.createElement('a');
     cta.className = 'btn';
@@ -88,7 +95,7 @@ async function renderProductDetail() {
   renderVariantList(main, 'Tamanhos', product.sizes);
   renderVariantList(main, 'Cores', product.colors);
 
-  document.title = `${product.name} — lamit-store`;
+  document.title = `${product.name} — Lamit Store`;
 }
 
 renderProductDetail();

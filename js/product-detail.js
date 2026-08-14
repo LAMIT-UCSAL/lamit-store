@@ -171,7 +171,7 @@ function renderSizeChips(container, sizes) {
   block.className = 'product-detail__variant';
 
   const label = document.createElement('strong');
-  label.textContent = 'Tamanhos:';
+  label.textContent = sizes.length === 1 ? 'Tamanho:' : 'Tamanhos:';
   block.appendChild(label);
 
   const chips = document.createElement('div');

@@ -51,8 +51,12 @@ function buildProductCard(product) {
   const images = (product.variants && product.variants[0] && product.variants[0].images) || [];
 
   if (images.length > 0) {
+    const hasMultipleImages = images.length > 1;
+
     const front = document.createElement('img');
-    front.className = 'product-card__image product-card__image--front';
+    front.className = hasMultipleImages
+      ? 'product-card__image product-card__image--front'
+      : 'product-card__image';
     front.src = images[0];
     front.alt = product.name;
     front.width = 1254;
@@ -60,7 +64,7 @@ function buildProductCard(product) {
     front.loading = 'lazy';
     imageWrap.appendChild(front);
 
-    if (images.length > 1) {
+    if (hasMultipleImages) {
       const back = document.createElement('img');
       back.className = 'product-card__image product-card__image--back';
       back.src = images[1];

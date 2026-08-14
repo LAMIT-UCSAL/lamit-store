@@ -142,9 +142,9 @@
           "images": ["/assets/products/ecobags/ecobagLamit.png"]
         }
       ],
-      "sizes": [],
+      "sizes": ["Único"],
       "price": 40,
-      "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
+      "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 5 unidades. Não é preciso comprar as 5 peças sozinho(a). Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 20 dias após o envio ao fornecedor.",
       "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Ecobag+Lamit"
     }
   ]

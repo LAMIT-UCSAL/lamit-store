@@ -574,7 +574,7 @@ body.has-sticky-bar footer {
     display: grid;
     grid-template-columns: 1fr 380px;
     column-gap: var(--space-xl);
-    row-gap: var(--space-sm);
+    row-gap: var(--space-xs);
     align-items: start;
     grid-template-areas:
       "gallery title"
@@ -611,6 +611,7 @@ body.has-sticky-bar footer {
   #product-detail > .product-detail__title {
     grid-area: title;
     margin-top: 0;
+    font-size: 1.5rem; /* coluna de 380px — evita quebra de linha nos nomes mais longos */
   }
 
   #product-detail > .product-detail__tagline {
@@ -625,7 +626,7 @@ body.has-sticky-bar footer {
 
   #product-detail > .product-detail__price-note {
     grid-area: price;
-    margin-top: 0;
+    margin-top: var(--space-xs);
     font-size: var(--font-size-h2);
   }
 

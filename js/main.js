@@ -1,5 +1,44 @@
 // Renderiza o grid de produtos do catálogo a partir de data/products.json
 
+function attachSwipe(imageWrap, card) {
+  let startX = 0;
+  let startY = 0;
+  let dx = 0;
+  let dy = 0;
+  let horizontalSwipe = false;
+
+  imageWrap.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    dx = 0;
+    dy = 0;
+    horizontalSwipe = false;
+  }, { passive: true });
+
+  imageWrap.addEventListener('touchmove', (event) => {
+    const touch = event.touches[0];
+    dx = touch.clientX - startX;
+    dy = touch.clientY - startY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+      horizontalSwipe = true;
+      event.preventDefault();
+    }
+  }, { passive: false });
+
+  imageWrap.addEventListener('touchend', () => {
+    if (horizontalSwipe && Math.abs(dx) > 30) {
+      imageWrap.classList.toggle('is-flipped');
+    }
+  });
+
+  card.addEventListener('click', (event) => {
+    if (horizontalSwipe && Math.abs(dx) > 30) {
+      event.preventDefault();
+    }
+  });
+}
+
 function buildProductCard(product) {
   const card = document.createElement('a');
   card.className = 'card product-card';
@@ -9,13 +48,25 @@ function buildProductCard(product) {
   const imageWrap = document.createElement('div');
   imageWrap.className = 'product-card__image-wrap';
 
-  if (product.images && product.images.length > 0) {
-    const img = document.createElement('img');
-    img.className = 'product-card__image';
-    img.src = product.images[0];
-    img.alt = product.name;
-    img.loading = 'lazy';
-    imageWrap.appendChild(img);
+  const images = (product.variants && product.variants[0] && product.variants[0].images) || [];
+
+  if (images.length > 0) {
+    const front = document.createElement('img');
+    front.className = 'product-card__image product-card__image--front';
+    front.src = images[0];
+    front.alt = product.name;
+    front.loading = 'lazy';
+    imageWrap.appendChild(front);
+
+    if (images.length > 1) {
+      const back = document.createElement('img');
+      back.className = 'product-card__image product-card__image--back';
+      back.src = images[1];
+      back.alt = '';
+      back.loading = 'lazy';
+      imageWrap.appendChild(back);
+      attachSwipe(imageWrap, card);
+    }
   } else {
     const placeholder = document.createElement('div');
     placeholder.className = 'product-card__image-placeholder';

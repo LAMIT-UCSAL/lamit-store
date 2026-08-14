@@ -2,68 +2,117 @@
   "products": [
     {
       "id": "camiseta-marrom-simples",
-      "name": "Camiseta Marrom Simples",
+      "name": "Camiseta LAMIT Core — Vinho",
       "category": "Camiseta",
-      "sizes": [
-        "P",
-        "M",
-        "G",
-        "GG"
+      "tagline": "A essência da LAMIT, sem excessos.",
+      "intro": [
+        "A **LAMIT Core** aposta em um visual minimalista, trazendo nossa assinatura no peito sobre o tom vinho da peça. Uma camiseta versátil para levar a identidade da comunidade para além dos eventos e encontros.",
+        "Produzida em **algodão suedine** e com **modelagem regular**, oferece toque macio, conforto e ótimo caimento para o uso no dia a dia."
       ],
-      "colors": [
-        "Marrom"
+      "details": [
+        "Modelagem regular",
+        "Algodão suedine",
+        "Cor vinho",
+        "Estampa LAMIT frontal",
+        "Gola redonda",
+        "Manga curta"
       ],
-      "images": [
-        "/assets/products/camisetas/4 - camisaLamitMarromSimples.png"
+      "variants": [
+        {
+          "name": null,
+          "description": null,
+          "images": [
+            "/assets/products/camisetas/CamisaMarromFrente.png",
+            "/assets/products/camisetas/CamisaMarromCostas.png"
+          ]
+        }
       ],
-      "description": "Camiseta oversized na cor marrom, com o logotipo LAMIT estampado no peito em branco.",
-      "price": null,
+      "sizes": ["P", "M", "G", "GG"],
+      "price": 50,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Marrom+Simples"
     },
     {
       "id": "camiseta-brasao-preta",
-      "name": "Camiseta Brasão Preta",
+      "name": "Camiseta LAMIT Legacy — Preta",
       "category": "Camiseta",
-      "sizes": [
-        "P",
-        "M",
-        "G",
-        "GG"
+      "tagline": "Vista o brasão. Faça parte da história.",
+      "intro": [
+        "A **LAMIT Legacy** carrega uma das representações mais fortes da nossa identidade: o brasão LAMIT em destaque no peito, acompanhado pela assinatura da liga nas mangas.",
+        "O preto encontra os detalhes em azul, dourado e laranja em uma peça criada para representar quem constrói e movimenta nossa comunidade.",
+        "Produzida em **algodão suedine** e com **modelagem regular**, combina conforto, resistência e um caimento versátil para o dia a dia."
       ],
-      "colors": [
-        "Preta"
+      "details": [
+        "Modelagem regular",
+        "Algodão suedine",
+        "Cor preta",
+        "Brasão LAMIT frontal",
+        "Estampas nas mangas",
+        "Gola redonda",
+        "Manga curta"
       ],
-      "images": [
-        "/assets/products/camisetas/5 - camisaLamitBrasãoPreta.png"
+      "variants": [
+        {
+          "name": null,
+          "description": null,
+          "images": [
+            "/assets/products/camisetas/CamisaBrasãoFrente.png",
+            "/assets/products/camisetas/CamisaBrasãoCostas.png"
+          ]
+        }
       ],
-      "description": "Camiseta oversized preta, com o brasão da LAMIT estampado no peito e \"LAMIT\" grafado nas mangas em laranja, estilo escrita à mão.",
-      "price": null,
+      "sizes": ["P", "M", "G", "GG"],
+      "price": 50,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Bras%C3%A3o+Preta"
     },
     {
       "id": "camiseta-salvador",
-      "name": "Camiseta Estampa Salvador",
+      "name": "Camiseta LAMIT Soterô",
       "category": "Camiseta",
-      "sizes": [
-        "P",
-        "M",
-        "G",
-        "GG"
+      "tagline": "Nossa cidade. Nossa origem. Nossa identidade.",
+      "intro": [
+        "A **LAMIT Soterô** nasceu como uma homenagem a Salvador, cidade que faz parte da história da nossa comunidade.",
+        "Na frente, a assinatura LAMIT mantém a peça minimalista. Nas costas, uma ilustração exclusiva transforma elementos da paisagem soteropolitana em uma composição que mistura arquitetura, mar, natureza e o pôr do sol da cidade.",
+        "Produzida em **algodão suedine** e com **modelagem regular**, a Soterô foi criada para carregar um pouco de Salvador por onde você for."
       ],
-      "colors": [
-        "Azul",
-        "Dourada",
-        "Preta"
+      "details": [
+        "Modelagem regular",
+        "Algodão suedine",
+        "Estampa LAMIT frontal",
+        "Ilustração exclusiva nas costas",
+        "Gola redonda",
+        "Manga curta",
+        "3 opções de cor"
       ],
-      "images": [
-        "/assets/products/camisetas/6 - camisaLamitSalvadorAzul.png",
-        "/assets/products/camisetas/6 - camisaLamitSalvadorDourada.png",
-        "/assets/products/camisetas/6 - camisaLamitSalvadorPreta.png"
+      "variants": [
+        {
+          "name": "Atlântico",
+          "description": "branca com estampa em azul e laranja, inspirada nas cores do mar e do pôr do sol.",
+          "images": [
+            "/assets/products/camisetas/CamisaSalvadorAzulFrente.png",
+            "/assets/products/camisetas/CamisaSalvadorAzulCostas.png"
+          ]
+        },
+        {
+          "name": "Areia",
+          "description": "branca com estampa em tom dourado/bege, uma interpretação mais leve e minimalista da arte.",
+          "images": [
+            "/assets/products/camisetas/CamisaSalvadorDouradaFrente.png",
+            "/assets/products/camisetas/CamisaSalvadorDouradaCostas.png"
+          ]
+        },
+        {
+          "name": "Dendê",
+          "description": "preta com estampa branca e pôr do sol laranja, trazendo o contraste mais marcante da coleção.",
+          "images": [
+            "/assets/products/camisetas/CamisaSalvadorBrancaFrente.png",
+            "/assets/products/camisetas/CamisaSalvadorBrancaCostas.png"
+          ]
+        }
       ],
-      "description": "Camiseta com o logotipo LAMIT no peito e uma ilustração no verso inspirada em Salvador — um farol, coqueiros, barcos e o pôr do sol. Disponível em 3 variações: Azul (estampa navy/laranja em camiseta branca), Dourada (estampa dourada em camiseta branca) e Preta (estampa branca em camiseta preta).",
-      "price": null,
+      "sizes": ["P", "M", "G", "GG"],
+      "price": 50,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Estampa+Salvador"
     },
@@ -71,11 +120,20 @@
       "id": "ecobag",
       "name": "Ecobag LAMIT",
       "category": "Ecobag",
+      "tagline": null,
+      "intro": [
+        "Descrição em breve."
+      ],
+      "details": [],
+      "variants": [
+        {
+          "name": null,
+          "description": null,
+          "images": []
+        }
+      ],
       "sizes": [],
-      "colors": [],
-      "images": [],
-      "description": "Descrição em breve.",
-      "price": null,
+      "price": 40,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
       "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Ecobag+Lamit"
     }

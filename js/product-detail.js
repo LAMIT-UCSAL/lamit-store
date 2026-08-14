@@ -1,19 +1,32 @@
 // Renderiza a página de detalhe de um produto, a partir do nome do arquivo na URL
 // (ex: /produtos/camiseta-salvador.html -> id "camiseta-salvador")
 
+const CHEVRON_LEFT_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+const CHEVRON_RIGHT_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+
 function getProductIdFromUrl() {
   const filename = location.pathname.split('/').pop();
   return filename.replace(/\.html$/, '');
 }
 
-function imageAlt(product, index) {
-  return product.colors[index]
-    ? `${product.name} — variação ${product.colors[index]}`
-    : product.name;
+function getAllImages(product) {
+  const images = [];
+  (product.variants || []).forEach((variant) => {
+    (variant.images || []).forEach((src, index) => {
+      const view = index === 0 ? 'frente' : 'costas';
+      const alt = variant.name
+        ? `${product.name} — ${variant.name}, ${view}`
+        : `${product.name} — ${view}`;
+      images.push({ src, alt });
+    });
+  });
+  return images;
 }
 
 function renderGallery(container, product) {
-  if (!product.images || product.images.length === 0) {
+  const images = getAllImages(product);
+
+  if (images.length === 0) {
     const placeholder = document.createElement('div');
     placeholder.className = 'product-detail__gallery-placeholder';
     placeholder.textContent = 'Foto em breve';
@@ -29,45 +42,97 @@ function renderGallery(container, product) {
   const gallery = document.createElement('div');
   gallery.className = 'product-detail__gallery';
 
-  const main = document.createElement('div');
-  main.className = 'product-detail__gallery-main';
+  const mainWrap = document.createElement('div');
+  mainWrap.className = 'product-detail__gallery-main';
   const mainImg = document.createElement('img');
-  mainImg.src = product.images[0];
-  mainImg.alt = imageAlt(product, 0);
-  main.appendChild(mainImg);
-  gallery.appendChild(main);
+  mainImg.src = images[0].src;
+  mainImg.alt = images[0].alt;
+  mainWrap.appendChild(mainImg);
 
-  if (product.images.length > 1) {
+  let prevBtn = null;
+  let nextBtn = null;
+  let thumbButtons = null;
+  let currentIndex = 0;
+
+  function setIndex(index) {
+    currentIndex = (index + images.length) % images.length;
+    mainImg.src = images[currentIndex].src;
+    mainImg.alt = images[currentIndex].alt;
+    if (thumbButtons) {
+      thumbButtons.forEach((t, i) => t.classList.toggle('is-active', i === currentIndex));
+    }
+  }
+
+  if (images.length > 1) {
+    prevBtn = document.createElement('button');
+    prevBtn.type = 'button';
+    prevBtn.className = 'product-detail__gallery-arrow product-detail__gallery-arrow--prev';
+    prevBtn.setAttribute('aria-label', 'Foto anterior');
+    prevBtn.innerHTML = CHEVRON_LEFT_SVG;
+    prevBtn.addEventListener('click', () => setIndex(currentIndex - 1));
+
+    nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'product-detail__gallery-arrow product-detail__gallery-arrow--next';
+    nextBtn.setAttribute('aria-label', 'Próxima foto');
+    nextBtn.innerHTML = CHEVRON_RIGHT_SVG;
+    nextBtn.addEventListener('click', () => setIndex(currentIndex + 1));
+
+    mainWrap.appendChild(prevBtn);
+    mainWrap.appendChild(nextBtn);
+  }
+
+  gallery.appendChild(mainWrap);
+
+  if (images.length > 1) {
     const thumbs = document.createElement('div');
     thumbs.className = 'product-detail__gallery-thumbs';
 
-    product.images.forEach((src, index) => {
+    thumbButtons = images.map((image, index) => {
       const thumb = document.createElement('button');
       thumb.type = 'button';
       thumb.className = 'product-detail__gallery-thumb';
       if (index === 0) thumb.classList.add('is-active');
-      thumb.setAttribute('aria-label', imageAlt(product, index));
+      thumb.setAttribute('aria-label', image.alt);
 
       const thumbImg = document.createElement('img');
-      thumbImg.src = src;
+      thumbImg.src = image.src;
       thumbImg.alt = '';
       thumbImg.loading = 'lazy';
       thumb.appendChild(thumbImg);
 
-      thumb.addEventListener('click', () => {
-        mainImg.src = src;
-        mainImg.alt = imageAlt(product, index);
-        thumbs.querySelectorAll('.product-detail__gallery-thumb').forEach((t) => t.classList.remove('is-active'));
-        thumb.classList.add('is-active');
-      });
-
+      thumb.addEventListener('click', () => setIndex(index));
       thumbs.appendChild(thumb);
+      return thumb;
     });
 
     gallery.appendChild(thumbs);
   }
 
   container.appendChild(gallery);
+}
+
+function renderInlineBold(text) {
+  const frag = document.createDocumentFragment();
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  parts.forEach((part, index) => {
+    if (!part) return;
+    if (index % 2 === 1) {
+      const strong = document.createElement('strong');
+      strong.textContent = part;
+      frag.appendChild(strong);
+    } else {
+      frag.appendChild(document.createTextNode(part));
+    }
+  });
+  return frag;
+}
+
+function renderParagraph(container, text, className) {
+  const p = document.createElement('p');
+  if (className) p.className = className;
+  p.appendChild(renderInlineBold(text));
+  container.appendChild(p);
 }
 
 function renderVariantList(container, title, items) {
@@ -169,9 +234,48 @@ async function renderProductDetail() {
   h1.textContent = product.name;
   main.appendChild(h1);
 
-  const description = document.createElement('p');
-  description.textContent = product.description;
-  main.appendChild(description);
+  if (product.tagline) {
+    const tagline = document.createElement('p');
+    tagline.className = 'product-detail__tagline';
+    tagline.textContent = product.tagline;
+    main.appendChild(tagline);
+  }
+
+  (product.intro || []).forEach((paragraph) => renderParagraph(main, paragraph, 'product-detail__paragraph'));
+
+  const describedVariants = (product.variants || []).filter((v) => v.description);
+  if (describedVariants.length > 0) {
+    const variantsHeading = document.createElement('h2');
+    variantsHeading.className = 'product-detail__section-heading';
+    variantsHeading.textContent = 'Escolha sua versão';
+    main.appendChild(variantsHeading);
+
+    describedVariants.forEach((variant) => {
+      const p = document.createElement('p');
+      p.className = 'product-detail__paragraph';
+      const strong = document.createElement('strong');
+      strong.textContent = `${variant.name} — `;
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode(variant.description));
+      main.appendChild(p);
+    });
+  }
+
+  if (product.details && product.details.length > 0) {
+    const detailsHeading = document.createElement('h2');
+    detailsHeading.className = 'product-detail__section-heading';
+    detailsHeading.textContent = 'Detalhes do produto';
+    main.appendChild(detailsHeading);
+
+    const list = document.createElement('ul');
+    list.className = 'product-detail__details';
+    product.details.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+    main.appendChild(list);
+  }
 
   if (product.deliveryNote) {
     const deliveryNote = document.createElement('p');
@@ -188,7 +292,10 @@ async function renderProductDetail() {
   main.appendChild(priceNote);
 
   renderSizeChips(main, product.sizes);
-  renderVariantList(main, 'Cores', product.colors);
+
+  if (describedVariants.length === 0) {
+    renderVariantList(main, 'Cores', (product.variants || []).map((v) => v.name).filter(Boolean));
+  }
 
   renderStickyBar(product);
 

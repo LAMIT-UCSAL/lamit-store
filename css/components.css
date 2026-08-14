@@ -67,16 +67,63 @@
   box-shadow: 0 10px 24px rgba(14, 27, 39, 0.12);
 }
 
-/* Hero — faixa navy full-bleed com o título, mesmo tratamento do header */
+/* Hero — banner promocional full-bleed com foto + legenda sobreposta */
 .hero {
+  position: relative;
   background-color: var(--color-secondary);
-  padding: var(--space-xl) 0;
+  overflow: hidden;
 }
 
-.hero h1 {
+.hero__media {
+  aspect-ratio: 3 / 4;
+}
+
+@media (min-width: 600px) {
+  .hero__media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__media {
+    aspect-ratio: 1682 / 935;
+  }
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(14, 27, 39, 0) 25%, rgba(14, 27, 39, 0.68) 65%, rgba(14, 27, 39, 0.88) 100%);
+}
+
+.hero__inner {
+  width: 100%;
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+.hero__caption {
   color: var(--color-bg);
-  font-size: clamp(2.25rem, 6vw, 4rem);
-  max-width: 18ch;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 6vw, 4rem);
+  line-height: 1.1;
+  max-width: 16ch;
+}
+
+.hero__subtitle {
+  margin-top: var(--space-xs);
+  color: var(--color-bg);
+  font-size: var(--font-size-body);
+  font-weight: 600;
 }
 
 /* Bloco "O que é a LAMIT" — painel no mesmo tratamento visual dos cards de produto */
@@ -153,16 +200,39 @@
 }
 
 .product-card__image-wrap {
+  position: relative;
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
   overflow: hidden;
   background-color: var(--color-border);
+  touch-action: pan-y;
 }
 
 .product-card__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity var(--transition-base);
+}
+
+.product-card__image--front {
+  opacity: 1;
+}
+
+.product-card__image--back {
+  opacity: 0;
+}
+
+.card:hover .product-card__image--front,
+.product-card__image-wrap.is-flipped .product-card__image--front {
+  opacity: 0;
+}
+
+.card:hover .product-card__image--back,
+.product-card__image-wrap.is-flipped .product-card__image--back {
+  opacity: 1;
 }
 
 .product-card__image-placeholder {
@@ -232,11 +302,48 @@ footer {
 }
 
 .product-detail__gallery-main {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
   background-color: var(--color-border);
+  box-shadow: 0 2px 8px rgba(14, 27, 39, 0.06);
+}
+
+.product-detail__gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.product-detail__gallery-arrow:hover,
+.product-detail__gallery-arrow:focus-visible {
+  background-color: #FFFFFF;
+}
+
+.product-detail__gallery-arrow:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.product-detail__gallery-arrow--prev {
+  left: var(--space-xs);
+}
+
+.product-detail__gallery-arrow--next {
+  right: var(--space-xs);
 }
 
 .product-detail__gallery-main img {
@@ -281,7 +388,7 @@ footer {
 }
 
 .product-detail__gallery-thumb.is-active {
-  border-color: var(--color-primary);
+  border-color: var(--color-accent);
 }
 
 .product-detail__gallery-placeholder {
@@ -293,6 +400,36 @@ footer {
   background-color: var(--color-border);
   color: var(--color-text);
   border-radius: 8px;
+}
+
+.product-detail__tagline {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.product-detail__paragraph {
+  margin-top: var(--space-sm);
+}
+
+.product-detail__section-heading {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  font-size: 1.25rem;
+}
+
+.product-detail__details {
+  margin-top: var(--space-xs);
+  padding-left: 1.25rem;
+}
+
+.product-detail__details li {
+  margin-top: 4px;
+}
+
+.product-detail__details li:first-child {
+  margin-top: 0;
 }
 
 .product-detail__variant {
@@ -358,17 +495,16 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  background-color: #FFFFFF;
-  border-top: 1px solid var(--color-border);
+  background-color: var(--color-secondary);
   padding: var(--space-sm) var(--space-md);
-  box-shadow: 0 -4px 16px rgba(14, 27, 39, 0.08);
+  box-shadow: 0 -4px 16px rgba(14, 27, 39, 0.18);
   z-index: 10;
 }
 
 .product-detail__sticky-bar-price {
   font-size: var(--font-size-small);
-  font-weight: 600;
-  color: var(--color-text);
+  font-weight: 700;
+  color: var(--color-bg);
 }
 
 .product-detail__sticky-bar .btn {

@@ -21,42 +21,46 @@
   <link rel="stylesheet" href="/css/components.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
   <header class="site-header">
     <a href="/" class="site-header__brand">
-      <img src="/assets/logos/lamitEscudoVazadoBranco.png" alt="" class="site-header__mark">
+      <img src="/assets/logos/lamitEscudoVazadoBranco.png" alt="" class="site-header__mark" width="381" height="445">
       <span class="site-header__wordmark">Lamit Store</span>
     </a>
   </header>
 
-  <section class="hero">
-    <div class="hero__media">
-      <img src="/assets/HeroLamit.png" alt="Três pessoas vestindo camisetas da coleção LAMIT em Salvador" class="hero__image" fetchpriority="high">
-    </div>
-    <div class="hero__overlay">
-      <div class="hero__inner page-container">
-        <h1 class="hero__caption">Sua comunidade. Seu estilo.</h1>
-        <p class="hero__subtitle">A loja oficial da LAMIT</p>
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero__media">
+        <img src="/assets/HeroLamit.png" alt="Três pessoas vestindo camisetas da coleção LAMIT em Salvador" class="hero__image" width="1682" height="935" fetchpriority="high">
       </div>
-    </div>
-  </section>
-
-  <div class="page-container">
-    <section class="intro">
-      <h2>O que é a LAMIT?</h2>
-      <p>A LAMIT é um ecossistema de inovação que conecta pessoas, ideias e oportunidades. Criamos um ambiente onde tecnologia, empreendedorismo e criatividade se encontram para tirar projetos do papel e transformar conhecimento em experiências reais.</p>
-      <p>Mais do que uma comunidade acadêmica, somos um espaço para construir, experimentar, aprender e gerar impacto ao lado de pessoas que compartilham a vontade de fazer acontecer.</p>
-      <p>A Lamit Store é uma extensão da nossa identidade e uma forma de levar a LAMIT para além dos projetos, eventos e conexões.</p>
-      <p>Não é só sobre vestir a LAMIT. É sobre fazer parte do que estamos construindo.</p>
+      <div class="hero__overlay">
+        <div class="hero__inner page-container">
+          <h1 class="hero__caption">Sua comunidade. Seu estilo.</h1>
+          <p class="hero__subtitle">A loja oficial da LAMIT</p>
+        </div>
+      </div>
     </section>
 
-    <div class="category-tabs" id="category-tabs" aria-label="Filtrar por categoria">
-      <!-- Abas renderizadas via js/main.js a partir de data/products.json -->
-    </div>
+    <div class="page-container">
+      <section class="intro">
+        <h2>O que é a LAMIT?</h2>
+        <p>A LAMIT é um ecossistema de inovação que conecta pessoas, ideias e oportunidades. Criamos um ambiente onde tecnologia, empreendedorismo e criatividade se encontram para tirar projetos do papel e transformar conhecimento em experiências reais.</p>
+        <p>Não é só sobre vestir a LAMIT. É sobre fazer parte do que estamos construindo.</p>
+      </section>
 
-    <section id="product-grid" class="product-grid" aria-label="Catálogo de produtos">
-      <!-- Cards renderizados via js/main.js a partir de data/products.json -->
-    </section>
-  </div>
+      <h2 class="sr-only">Catálogo de produtos</h2>
+
+      <div class="category-tabs" id="category-tabs" aria-label="Filtrar por categoria">
+        <!-- Abas renderizadas via js/main.js a partir de data/products.json -->
+      </div>
+
+      <section id="product-grid" class="product-grid" aria-label="Catálogo de produtos">
+        <!-- Cards renderizados via js/main.js a partir de data/products.json -->
+      </section>
+    </div>
+  </main>
 
   <!-- SHARED: footer v1 -->
   <footer>

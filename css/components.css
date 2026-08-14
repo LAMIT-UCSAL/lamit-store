@@ -10,6 +10,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
+  padding: var(--space-xs) 0;
   text-decoration: none;
 }
 
@@ -43,7 +44,7 @@
 .btn:hover,
 .btn:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(14, 27, 39, 0.18);
+  box-shadow: 0 4px 10px rgba(var(--color-secondary-rgb), 0.18);
 }
 
 /* Card base — uso real (Product Card) vem na Story 1.3 */
@@ -51,20 +52,20 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   overflow: hidden;
   text-decoration: none;
   color: var(--color-text);
-  box-shadow: 0 2px 8px rgba(14, 27, 39, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--color-secondary-rgb), 0.06);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .card:hover,
 .card:focus-visible {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(14, 27, 39, 0.12);
+  box-shadow: 0 10px 24px rgba(var(--color-secondary-rgb), 0.12);
 }
 
 /* Hero — banner promocional full-bleed com foto + legenda sobreposta */
@@ -102,7 +103,7 @@
   inset: 0;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(180deg, rgba(14, 27, 39, 0) 25%, rgba(14, 27, 39, 0.68) 65%, rgba(14, 27, 39, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(var(--color-secondary-rgb), 0) 25%, rgba(var(--color-secondary-rgb), 0.68) 65%, rgba(var(--color-secondary-rgb), 0.88) 100%);
 }
 
 .hero__inner {
@@ -128,12 +129,16 @@
 
 /* Bloco "O que é a LAMIT" — painel no mesmo tratamento visual dos cards de produto */
 .intro {
-  background-color: #FFFFFF;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  box-shadow: 0 10px 24px rgba(14, 27, 39, 0.12);
+  box-shadow: 0 10px 24px rgba(var(--color-secondary-rgb), 0.12);
   padding: var(--space-lg);
   margin-top: var(--space-lg);
+}
+
+.intro h2 {
+  margin-bottom: var(--space-xs);
 }
 
 .intro p {
@@ -163,7 +168,7 @@
   background: none;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  padding: var(--space-xs) var(--space-sm);
+  padding: 0.75rem var(--space-sm);
   color: var(--color-text);
   cursor: pointer;
   transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
@@ -231,11 +236,13 @@
 }
 
 .card:hover .product-card__image--front,
+.card:focus-visible .product-card__image--front,
 .product-card__image-wrap.is-flipped .product-card__image--front {
   opacity: 0;
 }
 
 .card:hover .product-card__image--back,
+.card:focus-visible .product-card__image--back,
 .product-card__image-wrap.is-flipped .product-card__image--back {
   opacity: 1;
 }
@@ -263,7 +270,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: rgba(251, 250, 248, 0.6);
+  color: rgba(var(--color-bg-rgb), 0.6);
   margin-bottom: 2px;
 }
 
@@ -285,7 +292,7 @@
 .product-card__price--soon {
   font-size: var(--font-size-small);
   font-weight: 600;
-  color: rgba(251, 250, 248, 0.75);
+  color: rgba(var(--color-bg-rgb), 0.75);
 }
 
 footer {
@@ -318,21 +325,21 @@ body.has-sticky-bar footer {
   border-radius: 8px;
   overflow: hidden;
   background-color: var(--color-border);
-  box-shadow: 0 2px 8px rgba(14, 27, 39, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--color-secondary-rgb), 0.06);
 }
 
 .product-detail__gallery-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(var(--color-surface-rgb), 0.85);
   color: var(--color-secondary);
   cursor: pointer;
   transition: background-color var(--transition-fast);
@@ -340,7 +347,7 @@ body.has-sticky-bar footer {
 
 .product-detail__gallery-arrow:hover,
 .product-detail__gallery-arrow:focus-visible {
-  background-color: #FFFFFF;
+  background-color: var(--color-surface);
 }
 
 .product-detail__gallery-arrow:focus-visible {
@@ -366,9 +373,13 @@ body.has-sticky-bar footer {
   display: flex;
   gap: var(--space-xs);
   margin-top: var(--space-xs);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 4px; /* espaço pra scrollbar não colar nas miniaturas */
 }
 
 .product-detail__gallery-thumb {
+  position: relative;
   width: 64px;
   height: 64px;
   padding: 0;
@@ -378,6 +389,7 @@ body.has-sticky-bar footer {
   background: none;
   cursor: pointer;
   flex-shrink: 0;
+  scroll-snap-align: start;
   transition: border-color var(--transition-fast);
 }
 
@@ -401,6 +413,20 @@ body.has-sticky-bar footer {
   border-color: var(--color-accent);
 }
 
+/* Indicador não-dependente-de-cor da miniatura ativa — a presença/ausência
+   do selo já comunica o estado, mesmo pra quem não distingue a cor accent */
+.product-detail__gallery-thumb.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-surface);
+}
+
 .product-detail__gallery-placeholder {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -421,6 +447,10 @@ body.has-sticky-bar footer {
   font-size: var(--font-size-body);
   font-weight: 600;
   color: var(--color-primary);
+}
+
+.product-detail__outro {
+  margin-top: var(--space-md);
 }
 
 .product-detail__paragraph {
@@ -461,10 +491,10 @@ body.has-sticky-bar footer {
   font-family: var(--font-primary);
   font-size: var(--font-size-small);
   font-weight: 600;
-  background-color: #FFFFFF;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  padding: var(--space-xs) var(--space-sm);
+  padding: 0.75rem var(--space-sm);
   color: var(--color-text);
   cursor: pointer;
   transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
@@ -511,7 +541,7 @@ body.has-sticky-bar footer {
   gap: var(--space-sm);
   background-color: var(--color-secondary);
   padding: var(--space-sm) var(--space-md);
-  box-shadow: 0 -4px 16px rgba(14, 27, 39, 0.18);
+  box-shadow: 0 -4px 16px rgba(var(--color-secondary-rgb), 0.18);
   z-index: 10;
 }
 

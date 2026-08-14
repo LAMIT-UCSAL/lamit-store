@@ -4,10 +4,14 @@
   /* Cores oficiais LAMIT (assets/lamit-brand-skill/.../lamit-institucional.md) */
   --color-primary: #0A69C4;      /* azul institucional */
   --color-secondary: #0E1B27;    /* navy — texto principal */
+  --color-secondary-rgb: 14, 27, 39; /* canais de --color-secondary, pra sombras/overlays com opacidade */
   --color-accent: #E8722C;       /* laranja — CTA, usar com moderação */
   --color-bg: #FBFAF8;           /* cream — fundo */
+  --color-bg-rgb: 251, 250, 248; /* canais de --color-bg, pra tints com opacidade */
   --color-text: #0E1B27;
   --color-border: rgba(14, 27, 39, 0.12); /* derivado do navy — o guia não define uma cor de borda própria */
+  --color-surface: #FFFFFF;      /* branco — cards, painéis, chips */
+  --color-surface-rgb: 255, 255, 255; /* canais de --color-surface, pra overlays com opacidade */
 
   /* Tipografia — fonte oficial LAMIT */
   --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

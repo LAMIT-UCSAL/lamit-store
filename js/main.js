@@ -55,6 +55,8 @@ function buildProductCard(product) {
     front.className = 'product-card__image product-card__image--front';
     front.src = images[0];
     front.alt = product.name;
+    front.width = 1254;
+    front.height = 1254;
     front.loading = 'lazy';
     imageWrap.appendChild(front);
 
@@ -63,6 +65,8 @@ function buildProductCard(product) {
       back.className = 'product-card__image product-card__image--back';
       back.src = images[1];
       back.alt = '';
+      back.width = 1254;
+      back.height = 1254;
       back.loading = 'lazy';
       imageWrap.appendChild(back);
       attachSwipe(imageWrap, card);

@@ -118,18 +118,28 @@
     },
     {
       "id": "ecobag",
-      "name": "Ecobag LAMIT",
+      "name": "Ecobag LAMIT × Perolar",
       "category": "Ecobag",
-      "tagline": null,
+      "tagline": "Duas comunidades. Uma criação feita à mão.",
       "intro": [
-        "Descrição em breve."
+        "A Connect nasce da collab entre a LAMIT e a Perolar, unindo inovação, criatividade e trabalho artesanal em uma peça exclusiva do nosso primeiro drop.",
+        "Produzida em tecido cru, a ecobag traz a identidade LAMIT em bordado feito à mão pela Perolar, acompanhada da frase “Innovate. Connect. Transform.”. Cada detalhe carrega um pouco da essência das duas marcas e reforça algo em que acreditamos: grandes ideias surgem quando pessoas diferentes se conectam para criar juntas."
       ],
-      "details": [],
+      "details": [
+        "Produto exclusivo LAMIT × Perolar",
+        "Bordado artesanal feito à mão",
+        "Identidade LAMIT em outline",
+        "Tecido cru",
+        "Alças longas",
+        "Frase “Innovate. Connect. Transform.”",
+        "Edição do primeiro drop LAMIT"
+      ],
+      "outro": "Inovação também se faz à mão.",
       "variants": [
         {
           "name": null,
           "description": null,
-          "images": []
+          "images": ["/assets/products/ecobags/ecobagLamit.png"]
         }
       ],
       "sizes": [],

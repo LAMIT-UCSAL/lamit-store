@@ -192,6 +192,7 @@ function renderStickyBar(product) {
   cta.textContent = 'Pedir';
   bar.appendChild(cta);
 
+  document.body.classList.add('has-sticky-bar');
   document.body.appendChild(bar);
 }
 
@@ -231,6 +232,7 @@ async function renderProductDetail() {
   renderGallery(main, product);
 
   const h1 = document.createElement('h1');
+  h1.className = 'product-detail__title';
   h1.textContent = product.name;
   main.appendChild(h1);
 

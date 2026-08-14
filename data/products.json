@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "camiseta-marrom-simples",
-      "name": "Camiseta LAMIT Core — Vinho",
+      "name": "Camiseta LAMIT Core",
       "category": "Camiseta",
       "tagline": "A essência da LAMIT, sem excessos.",
       "intro": [
@@ -34,7 +34,7 @@
     },
     {
       "id": "camiseta-brasao-preta",
-      "name": "Camiseta LAMIT Legacy — Preta",
+      "name": "Camiseta LAMIT Legacy",
       "category": "Camiseta",
       "tagline": "Vista o brasão. Faça parte da história.",
       "intro": [

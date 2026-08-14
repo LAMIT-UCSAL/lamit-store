@@ -12,15 +12,26 @@ body {
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
   line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Container de página — dá respiro lateral e limita a largura em telas grandes.
+   Elementos full-bleed (header, footer, barra fixa de CTA) ficam de fora, de propósito. */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
 }
 
 h1 {
   font-size: var(--font-size-h1);
+  font-weight: 800;
   line-height: 1.2;
 }
 
 h2 {
   font-size: var(--font-size-h2);
+  font-weight: 700;
   line-height: 1.25;
 }
 

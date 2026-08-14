@@ -19,7 +19,7 @@
       ],
       "variants": [
         {
-          "name": null,
+          "name": "Vinho",
           "description": null,
           "images": [
             "/assets/products/camisetas/CamisaMarromFrente.png",
@@ -53,7 +53,7 @@
       ],
       "variants": [
         {
-          "name": null,
+          "name": "Preta",
           "description": null,
           "images": [
             "/assets/products/camisetas/CamisaBrasãoFrente.png",
@@ -137,7 +137,7 @@
       "outro": "Inovação também se faz à mão.",
       "variants": [
         {
-          "name": null,
+          "name": "Cru",
           "description": null,
           "images": ["/assets/products/ecobags/ecobagLamit.png"]
         }

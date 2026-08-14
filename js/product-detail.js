@@ -27,15 +27,20 @@ function renderGallery(container, product) {
   const images = getAllImages(product);
 
   if (images.length === 0) {
+    const gallery = document.createElement('div');
+    gallery.className = 'product-detail__gallery';
+
     const placeholder = document.createElement('div');
     placeholder.className = 'product-detail__gallery-placeholder';
     placeholder.textContent = 'Foto em breve';
-    container.appendChild(placeholder);
+    gallery.appendChild(placeholder);
 
     const note = document.createElement('p');
     note.className = 'product-detail__delivery-note';
     note.textContent = 'Foto em breve — você já pode conferir os detalhes abaixo e reservar pelo formulário, se quiser garantir a peça.';
-    container.appendChild(note);
+    gallery.appendChild(note);
+
+    container.appendChild(gallery);
     return;
   }
 
@@ -151,15 +156,16 @@ function renderParagraph(container, text, className) {
 }
 
 function renderVariantList(container, title, items) {
-  if (!items || items.length === 0) return;
+  if (!items || items.length === 0) return null;
   const block = document.createElement('div');
   block.className = 'product-detail__variant';
   block.innerHTML = `<strong>${title}:</strong> ${items.join(', ')}`;
   container.appendChild(block);
+  return block;
 }
 
 function renderSizeChips(container, sizes) {
-  if (!sizes || sizes.length === 0) return;
+  if (!sizes || sizes.length === 0) return null;
 
   const block = document.createElement('div');
   block.className = 'product-detail__variant';
@@ -193,6 +199,7 @@ function renderSizeChips(container, sizes) {
 
   block.appendChild(chips);
   container.appendChild(block);
+  return block;
 }
 
 function renderStickyBar(product) {
@@ -265,14 +272,17 @@ async function renderProductDetail() {
     main.appendChild(tagline);
   }
 
-  (product.intro || []).forEach((paragraph) => renderParagraph(main, paragraph, 'product-detail__paragraph'));
+  const body = document.createElement('div');
+  body.className = 'product-detail__body';
+
+  (product.intro || []).forEach((paragraph) => renderParagraph(body, paragraph, 'product-detail__paragraph'));
 
   const describedVariants = (product.variants || []).filter((v) => v.description);
   if (describedVariants.length > 0) {
     const variantsHeading = document.createElement('h2');
     variantsHeading.className = 'product-detail__section-heading';
     variantsHeading.textContent = 'Escolha sua versão';
-    main.appendChild(variantsHeading);
+    body.appendChild(variantsHeading);
 
     describedVariants.forEach((variant) => {
       const p = document.createElement('p');
@@ -281,7 +291,7 @@ async function renderProductDetail() {
       strong.textContent = `${variant.name} — `;
       p.appendChild(strong);
       p.appendChild(document.createTextNode(variant.description));
-      main.appendChild(p);
+      body.appendChild(p);
     });
   }
 
@@ -289,7 +299,7 @@ async function renderProductDetail() {
     const detailsHeading = document.createElement('h2');
     detailsHeading.className = 'product-detail__section-heading';
     detailsHeading.textContent = 'Detalhes do produto';
-    main.appendChild(detailsHeading);
+    body.appendChild(detailsHeading);
 
     const list = document.createElement('ul');
     list.className = 'product-detail__details';
@@ -298,22 +308,24 @@ async function renderProductDetail() {
       li.textContent = item;
       list.appendChild(li);
     });
-    main.appendChild(list);
+    body.appendChild(list);
   }
 
   if (product.outro) {
     const outro = document.createElement('p');
     outro.className = 'product-detail__tagline product-detail__outro';
     outro.textContent = product.outro;
-    main.appendChild(outro);
+    body.appendChild(outro);
   }
 
   if (product.deliveryNote) {
     const deliveryNote = document.createElement('p');
     deliveryNote.className = 'product-detail__delivery-note';
     deliveryNote.textContent = product.deliveryNote;
-    main.appendChild(deliveryNote);
+    body.appendChild(deliveryNote);
   }
+
+  main.appendChild(body);
 
   const priceNote = document.createElement('p');
   priceNote.className = 'product-detail__price-note';
@@ -322,10 +334,21 @@ async function renderProductDetail() {
     : 'Preço em breve — você confirma o valor certinho antes de fechar o pedido, direto no formulário.';
   main.appendChild(priceNote);
 
-  renderSizeChips(main, product.sizes);
+  const colorNames = (product.variants || []).map((v) => v.name).filter(Boolean);
+  const colorsBlock = renderVariantList(main, 'Cores', colorNames);
+  if (colorsBlock) colorsBlock.classList.add('product-detail__colors-block');
 
-  if (describedVariants.length === 0) {
-    renderVariantList(main, 'Cores', (product.variants || []).map((v) => v.name).filter(Boolean));
+  const sizesBlock = renderSizeChips(main, product.sizes);
+  if (sizesBlock) sizesBlock.classList.add('product-detail__sizes-block');
+
+  if (product.formsUrl) {
+    const ctaInline = document.createElement('a');
+    ctaInline.className = 'btn product-detail__cta-inline';
+    ctaInline.href = product.formsUrl;
+    ctaInline.target = '_blank';
+    ctaInline.rel = 'noopener noreferrer';
+    ctaInline.textContent = 'Pedir';
+    main.appendChild(ctaInline);
   }
 
   renderStickyBar(product);

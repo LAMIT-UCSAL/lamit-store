@@ -439,6 +439,7 @@ body.has-sticky-bar footer {
 }
 
 .product-detail__title {
+  margin-top: var(--space-sm);
   font-size: clamp(1.5rem, 6vw, 2.25rem);
 }
 
@@ -478,6 +479,13 @@ body.has-sticky-bar footer {
 
 .product-detail__variant {
   margin-top: var(--space-sm);
+}
+
+/* Resumo de cores e CTA embutido — só existem pra montagem da coluna do desktop;
+   no mobile a barra fixa já cobre o CTA e a versão completa das cores está na descrição */
+.product-detail__colors-block,
+.product-detail__cta-inline {
+  display: none;
 }
 
 .product-detail__chips {
@@ -553,4 +561,97 @@ body.has-sticky-bar footer {
 
 .product-detail__sticky-bar .btn {
   flex-shrink: 0;
+}
+
+/* Layout de produto no desktop — galeria com miniaturas à esquerda da foto
+   principal, e nome/preço/cores/tamanho/CTA agrupados numa coluna à direita.
+   Descrição e detalhes continuam abaixo, ocupando a largura toda.
+   O mobile não usa nada disso — a barra fixa de CTA e a ordem de hoje seguem intactas. */
+@media (min-width: 1024px) {
+  #product-detail {
+    max-width: 1040px;
+    padding-bottom: var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    column-gap: var(--space-xl);
+    row-gap: var(--space-sm);
+    align-items: start;
+    grid-template-areas:
+      "gallery title"
+      "gallery tagline"
+      "gallery colors"
+      "gallery sizes"
+      "gallery price"
+      "gallery cta"
+      "description description";
+  }
+
+  .product-detail__gallery {
+    grid-area: gallery;
+  }
+
+  .product-detail__gallery:has(.product-detail__gallery-thumbs) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .product-detail__gallery-main {
+    flex: 1;
+  }
+
+  .product-detail__gallery-thumbs {
+    flex-direction: column;
+    overflow-x: visible;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+
+  #product-detail > .product-detail__title {
+    grid-area: title;
+    margin-top: 0;
+  }
+
+  #product-detail > .product-detail__tagline {
+    grid-area: tagline;
+    margin-top: 0;
+  }
+
+  .product-detail__body {
+    grid-area: description;
+    margin-top: var(--space-xl);
+  }
+
+  #product-detail > .product-detail__price-note {
+    grid-area: price;
+    margin-top: 0;
+    font-size: var(--font-size-h2);
+  }
+
+  .product-detail__colors-block {
+    grid-area: colors;
+    display: block;
+    margin-top: 0;
+  }
+
+  .product-detail__sizes-block {
+    grid-area: sizes;
+    margin-top: 0;
+  }
+
+  .product-detail__cta-inline {
+    grid-area: cta;
+    display: block;
+    margin-top: var(--space-xs);
+    text-align: center;
+  }
+
+  .product-detail__sticky-bar {
+    display: none;
+  }
+
+  body.has-sticky-bar footer {
+    padding-bottom: var(--space-md);
+  }
 }

@@ -1,0 +1,136 @@
+schema: 1
+story: '3.1'
+story_title: 'Alinhamento Visual da Loja com o Site LAMIT'
+gate: CONCERNS
+status_reason: 'Re-review: REQ-001, A11Y-001, UX-001 e PERF-001 foram corrigidos e verificados no navegador, sem regressões. O gate continua em CONCERNS só porque REL-001 (Forms da caneca pré-preenchido como ecobag) segue aberto por decisão do time; há também um item novo, low e anterior à story (A11Y-002).'
+reviewer: 'Quinn (Test Architect)'
+reviewed_revision: 'working-tree sobre a70d87e (re-review pós-correções do @dev; alterações ainda não commitadas)'
+updated: '2026-10-14T15:00:00-03:00'
+
+top_issues:
+  - id: 'REL-001'
+    severity: medium
+    status: open
+    finding: 'data/products.json:191: o formsUrl da caneca pré-preenche entry.1726040702=Ecobag+Lamit, então os pedidos da caneca chegam ao Forms identificados como ecobag. Pendência conhecida (o time ainda está decidindo).'
+    suggested_action: 'Antes de divulgar a caneca: criar no Forms a opção "Caneca" e trocar o parâmetro para Caneca+Na+Minha+M%C3%A1quina+Funciona. Responsáveis: @po (decisão) e @dev (troca do link).'
+  - id: 'A11Y-002'
+    severity: low
+    status: open
+    finding: 'js/product-detail.js:269: a barra fixa de CTA (.product-detail__sticky-bar) é inserida direto no body, fora de qualquer landmark (axe best-practice "region", moderate, PDP em 375px). Comportamento anterior às correções, só detectado agora porque o axe rodou no mobile.'
+    suggested_action: 'Anexar a barra dentro do <main id="product-detail"> ou envolvê-la em <aside aria-label="Pedido rápido">.'
+  - id: 'REQ-001'
+    severity: medium
+    status: resolved
+    finding: 'Copy do passo 03 contradizia o products.json (30 un. / 2 semanas para todos).'
+    resolution: 'index.html:122 agora diz: mínimo de 30 camisetas, ou 5 ecobags ou canecas, ou em até 1 mês; cerca de 2 semanas para camisetas e 1 semana para ecobag e caneca. Bate com os deliveryNote do data/products.json (linhas 32, 66, 116, 153 e 190). PRODUCT.md:33 alinhado.'
+  - id: 'A11Y-001'
+    severity: medium
+    status: resolved
+    finding: 'O Tab escapava do menu mobile aberto.'
+    resolution: 'js/site.js:11-43 + css/components.css:160-165. Verificado em 375px (home e PDP) e em 320px. Ao abrir, ficam inert skip-link, breadcrumb, main, footer, barra fixa e marca; o foco vai para "Drop 01"; o Tab circula só entre os links, o botão "Fechar menu" e a barra do navegador (Shift+Tab idem). Esc fecha, devolve o foco ao botão e remove todos os inert. Toque abre e fecha. O link "Como funciona" navega para /#como-funciona, fecha o menu e restaura o overflow. Ao redimensionar para 1024px com o menu aberto, ele fecha e não sobra inert. A nav desktop continua navegando (#sobre). axe com o menu aberto: 0 violações.'
+  - id: 'UX-001'
+    severity: low
+    status: resolved
+    finding: 'O hero__meta quebrava no meio de um item em 320px.'
+    resolution: 'index.html:61 + css/components.css:365. Em 320px, a linha ainda ocupa 2 linhas, mas a quebra cai entre itens ("3 CAMISETAS · 1 ECOBAG · / 1 CANECA"), sem overflow (scrollWidth 320). Atende à correção sugerida.'
+  - id: 'PERF-001'
+    severity: low
+    status: resolved
+    finding: 'O logo do rodapé tinha 138KB e a imagem LCP da PDP não tinha preload.'
+    resolution: 'O logo baixou para 47.818 bytes, renderiza a 135x64 (natural 742x351). A diferença de pixels contra o screenshot anterior à correção dá erro médio de 0,68/255 e 1,27% de pixels acima de 16 (só antialias), visualmente idêntico. Preload em produtos/*.html:21: nas 5 PDPs, em 1280 e 375px, o href do preload é igual ao currentSrc da imagem principal, há 1 única requisição da imagem, ela é o elemento LCP e não aparece nenhum aviso "preloaded but not used" no console após 4,5s. LCP local de cerca de 0,8 a 1,2s (medido com --no-proxy-server; sem essa flag o Chrome headless desta máquina leva cerca de 20s de TTFB por detecção de proxy, um artefato do ambiente e não da aplicação).'
+
+waiver: { active: false }
+
+quality_score: 90
+expires: '2026-10-28T00:00:00-03:00'
+
+evidence:
+  tests_reviewed: 0
+  automated_checks:
+    - 'node --check em js/*.js: OK; JSON.parse em data/products.json: OK'
+    - 'axe-core 4.10.2 (wcag2a, wcag2aa, best-practice) em home, PDP Soterô e PDP caneca: 0 violações'
+    - 'Playwright (Chrome) em 1440, 1280 e 375px: 0 erros de console, 0 respostas 4xx'
+  risks_identified: 3
+  re_review_checks:
+    - 'Playwright: menu mobile (375/320px, home e PDP: clique/toque, Tab/Shift+Tab, Esc, link, resize), nav desktop, 5 PDPs x 2 larguras (preload/LCP/console), diff de pixels do logo do rodapé'
+    - 'axe-core 4.10.2 em 375px: home 0; home com menu aberto 0; PDP caneca 1 (region, best-practice → A11Y-002); PDP caneca com menu aberto 0'
+  trace:
+    ac_covered: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ac_gaps: []
+    ac_notes:
+      ac1: 'tokens.css: paper/ink/cobalt/signal-blue/signal-orange/gold, mais aliases --color-primary/secondary/accent/bg/text/border'
+      ac2: 'Montserrat carregada (document.fonts.check = true), body e h1 em Montserrat, um único woff2 de 37KB'
+      ac3: 'radius em tokens; card 20px com shadow-soft e shadow-lift no hover; CTA com sombra laranja só no hover'
+      ac4: 'escudo + "LAMIT Store", nav, "LAMIT ↗" (Linktree, decisão do usuário), overlay mobile com links de 56px, Esc fecha'
+      ac5: '4 redes sociais com aria-label, "2026 LAMIT" e texto de privacidade em todas as 6 páginas'
+      ac6: 'todas as seções presentes; copy do passo 03 corrigida no re-review (REQ-001 resolvido)'
+      ac7: 'kicker em #7D6310 (gold-ink); CTA #164194 com texto branco, no hover #E84B13 com texto #0B0D12; scrubber 01/06, setas com volta circular, miniaturas com aria-current'
+      ac8: 'hero servido como HeroLamit.webp (112KB) / -900 (42KB); cards em -600.webp; PNGs e JPEGs originais mantidos (ecobagLamit.png removido porque o produto foi substituído)'
+      ac9: 'reduced-motion: 0 rAF/s, reveals visíveis, 0 animações. Fora da tela: 0 rAF/s (58/s visível). Sem WebGL2: canvas fica com opacity 0 e aparece o gradiente CSS da faixa, sem erros'
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: 'innerHTML só com SVG estático (product-detail.js:103,110) e limpeza do grid (main.js:175); dados do JSON inseridos via textContent. Os 15 links target=_blank têm rel="noopener noreferrer". Risco externo: netlify.toml publish="." (ver risks).'
+  performance:
+    status: PASS
+    notes: 'Home com cerca de 1,1MB transferido sem o axe (hero 112KB em WebP, imagens de comunidade lazy). Fonte com display=swap. Todos os scripts com defer; Grainient iniciado em requestIdleCallback, com DPR limitado a 1.5. PERF-001 resolvido no re-review (logo com 47KB, preload da imagem da PDP).'
+  reliability:
+    status: PASS
+    notes: 'Fallback de erro no fetch, "Produto não encontrado", fallback sem WebGL2, try/catch no setup do shader.'
+  maintainability:
+    status: CONCERNS
+    notes: 'Header e rodapé duplicados em 6 HTMLs (marcados com "SHARED"); toWebp() duplicada em main.js e product-detail.js. Aceitável sem build, mas é débito (migração para Vite já prevista).'
+  accessibility:
+    status: PASS
+    notes: 'axe sem violações; foco visível com outline laranja de 2px em tabs, cards, CTA e links; abas com aria-pressed; chips com aria-pressed; skip-link presente; alt text descritivo. A11Y-001 resolvido no re-review (inert + foco gerenciado). Fica só A11Y-002 (low).'
+
+risks:
+  - id: 'RISK-SEC-001'
+    severity: high
+    owner: '@devops'
+    blocks_gate: false
+    finding: 'netlify.toml usa publish = "." e command = "", então o deploy publica o repositório inteiro (.aiox-core/, .claude/, docs/, PRODUCT.md, a pasta lamit-store/ e scripts).'
+    justification_non_blocking: 'Configuração anterior à story e fora do escopo dela (já listada em "Fora de escopo").'
+    suggested_action: 'Publicar só os artefatos do site (pasta dist/ gerada por cópia, ou publish em um subdiretório public/) e/ou adicionar regras de bloqueio em _redirects. Fazer antes do próximo deploy.'
+  - id: 'RISK-REPO-001'
+    severity: medium
+    owner: '@devops'
+    blocks_gate: false
+    finding: 'A pasta lamit-store/ (aninhada, não versionada) está na raiz e seria publicada pelo publish=".".'
+    suggested_action: 'Remover a pasta ou adicioná-la ao .gitignore e confirmar a origem com o usuário.'
+  - id: 'RISK-BIZ-001'
+    severity: medium
+    owner: '@po'
+    blocks_gate: false
+    finding: 'Formulário da caneca provisório (REL-001) e URL de produção do site LAMIT desconhecida ("LAMIT ↗" aponta para o Linktree).'
+
+recommendations:
+  immediate:
+    - action: 'Trocar o formsUrl da caneca assim que o Forms tiver a opção (REL-001)'
+      refs: ['data/products.json:191']
+  future:
+    - action: 'Colocar a barra fixa de CTA dentro de um landmark (A11Y-002)'
+      refs: ['js/product-detail.js:269']
+    - action: 'Os chips de tamanho são só visuais: a seleção não é repassada ao Forms. Avaliar pré-preencher o tamanho no formsUrl (comportamento anterior à story)'
+      refs: ['js/product-detail.js:211-245']
+    - action: 'Extrair header/rodapé e toWebp() para um único ponto quando houver build (Vite)'
+      refs: ['index.html', 'produtos/*.html', 'js/main.js:43', 'js/product-detail.js:9']
+  testing:
+    - 'O projeto não tem framework de testes nem lint. Os checks foram ad hoc (Playwright/axe no scratchpad). Sugestão: versionar um smoke test Playwright mínimo em tests/ cobrindo menu, filtro, galeria e CTA.'
+
+coderabbit:
+  status: 'not_run'
+  notes: 'Sem CodeRabbit CLI configurado neste projeto estático; revisão manual + automação Playwright/axe.'
+
+auto_decisions:
+  - 'A story não tem seção Change Log, então o registro de transição foi feito dentro de QA Results, em vez de dar HALT (motivo: autoridade restrita à seção QA Results).'
+  - 'A seleção de tamanho que não chega ao Forms foi tratada como débito futuro, não como issue, porque o comportamento é anterior a esta story.'
+
+revision_history:
+  - date: '2026-10-14'
+    gate: CONCERNS
+    reason: 'Review inicial: REQ-001, REL-001 e A11Y-001 (medium), UX-001 e PERF-001 (low)'
+  - date: '2026-10-14'
+    gate: CONCERNS
+    reason: 'Re-review: REQ-001, A11Y-001, UX-001 e PERF-001 resolvidos; REL-001 aberto por decisão do time; A11Y-002 (low) novo e anterior às correções'

@@ -1,37 +1,76 @@
-/* Tokens de marca LAMIT — Story 1.2 */
+/* Tokens de marca LAMIT — paleta e gradiente do site principal (lamit-site/DESIGN.md)
+   em tema claro, com Montserrat e cantos suavizados (decisão do usuário, 2026-10-13).
+   Ver docs/audits/2026-10-13-design-alignment-audit.md §4. */
 
 :root {
-  /* Cores oficiais LAMIT (assets/lamit-brand-skill/.../lamit-institucional.md) */
-  --color-primary: #0A69C4;      /* azul institucional */
-  --color-secondary: #0E1B27;    /* navy — texto principal */
-  --color-secondary-rgb: 14, 27, 39; /* canais de --color-secondary, pra sombras/overlays com opacidade */
-  --color-accent: #E8722C;       /* laranja — CTA, usar com moderação */
-  --color-bg: #FBFAF8;           /* cream — fundo */
-  --color-bg-rgb: 251, 250, 248; /* canais de --color-bg, pra tints com opacidade */
-  --color-text: #0E1B27;
-  --color-border: rgba(14, 27, 39, 0.12); /* derivado do navy — o guia não define uma cor de borda própria */
-  --color-surface: #FFFFFF;      /* branco — cards, painéis, chips */
-  --color-surface-rgb: 255, 255, 255; /* canais de --color-surface, pra overlays com opacidade */
+  /* Superfícies */
+  --color-paper: #FBFAF8;        /* fundo */
+  --color-paper-2: #F2EFE8;      /* faixas alternadas, fundo de mídia de produto */
+  --color-surface: #FFFFFF;      /* uso pontual: chips */
+  --color-night: #081536;        /* faixas escuras (Cobalto Noturno do site) */
 
-  /* Tipografia — fonte oficial LAMIT */
+  /* Tinta */
+  --color-ink: #0B0D12;          /* texto principal — 19.0:1 sobre papel */
+  --color-ink-muted: #4A4F57;    /* texto secundário — 7.9:1 */
+  --color-ink-subtle: #6B6F76;   /* metadados — 4.8:1 */
+  --color-line: #0B0D12;         /* linha assinatura de 1–2px */
+  --color-hairline: rgba(11, 13, 18, 0.16);
+
+  /* Marca (herdada do site) */
+  --color-cobalt: #0A3383;       /* Cobalto Profundo — links, preço — 11.1:1 */
+  --color-signal-blue: #164194;  /* CTA primário — branco sobre ele 9.5:1 */
+  --color-signal-orange: #E84B13;/* só estados: hover, foco, sublinhado, ativo */
+  --color-orange-ink: #B83A0C;   /* laranja para texto sobre papel — 5.5:1 */
+  --color-amber: #C17402;        /* só dentro do gradiente */
+  --color-gold: #D7C06B;         /* ouro decorativo / kicker sobre night */
+  --color-gold-ink: #7D6310;     /* ouro para texto sobre papel — 5.5:1 */
+
+  /* Aliases dos tokens antigos (Story 1.2) — mantidos para não quebrar nada */
+  --color-primary: var(--color-cobalt);
+  --color-secondary: var(--color-ink);
+  --color-accent: var(--color-signal-orange);
+  --color-bg: var(--color-paper);
+  --color-text: var(--color-ink);
+  --color-border: var(--color-hairline);
+
+  /* Tipografia — Montserrat (fonte oficial do guia institucional LAMIT) */
   --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-size-base: 1rem;
-  --font-size-h1: 2.5rem;
-  --font-size-h2: 1.75rem;
+  --font-size-display: clamp(2.4rem, 6.5vw, 5rem);
+  --font-size-h1: clamp(2rem, 5vw, 3.5rem);
+  --font-size-h2: clamp(1.75rem, 4vw, 3rem);
+  --font-size-title: clamp(1.25rem, 2.4vw, 1.75rem);
   --font-size-body: 1rem;
-  --font-size-small: 0.875rem;
+  --font-size-small: 0.85rem;
   --font-size-xs: 0.75rem;
+  --tracking-kicker: 0.18em;
+  --tracking-ui: 0.06em;
 
-  /* Espaçamento — proposta própria; o guia de marca não define escala numérica */
+  /* Espaçamento */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2.5rem;
   --space-xl: 4rem;
+  --space-section: clamp(4rem, 10vw, 8rem);
+  --gutter: clamp(1rem, 4vw, 3rem);
+
+  /* Forma — cantos suavizados, profundidade leve só onde ajuda a leitura */
+  --radius-sm: 8px;              /* chips, abas, badges */
+  --radius-md: 12px;             /* botões, miniaturas, setas */
+  --radius-lg: 20px;             /* cards, galeria, fotos */
+  --radius-pill: 999px;
+  --radius-glass: var(--radius-md);
+  --border-ui: 1px solid var(--color-hairline);
+  --border-strong: 2px solid var(--color-ink);
+  --shadow-soft: 0 1px 2px rgba(11, 13, 18, 0.04), 0 8px 24px rgba(11, 13, 18, 0.06);
+  --shadow-lift: 0 2px 4px rgba(11, 13, 18, 0.05), 0 16px 40px rgba(10, 51, 131, 0.12);
 
   /* Movimento */
+  --ease-broadcast: cubic-bezier(.2, .7, .2, 1);
   --transition-fast: 150ms ease-out;
-  --transition-base: 200ms ease-in-out;
+  --transition-base: 300ms ease-in-out;  /* sublinhado da nav (site: 0.3s) */
+  --transition-flip: 500ms ease-in-out;  /* flip de cor do CTA (site: 0.5s) */
 }
 
 @media (prefers-reduced-motion: reduce) {

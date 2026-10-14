@@ -1,0 +1,1 @@
+- [Dual brand systems](project_dual-brand-systems.md) — institutional scrapbook guide vs site broadcast/mono; store should inherit the site's identity, light theme

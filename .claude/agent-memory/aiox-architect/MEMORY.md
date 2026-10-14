@@ -1,0 +1,1 @@
+- [Alinhamento loja x site](project_store-site-alignment.md) — recomendação Vite vanilla + tokens compartilhados; paleta canônica pendente (out/2026)

@@ -1,4 +1,4 @@
-/* Reset + estilos globais — Story 1.2 */
+/* Reset + estilos globais — Story 1.2, revisto no alinhamento com o site LAMIT */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -6,37 +6,62 @@
   padding: 0;
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  line-height: 1.5;
-  overflow-x: hidden;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem; /* âncoras não ficam escondidas sob o header sticky */
 }
 
-/* Container de página — dá respiro lateral e limita a largura em telas grandes.
-   Elementos full-bleed (header, footer, barra fixa de CTA) ficam de fora, de propósito. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Container de página — elementos full-bleed (header, faixas, footer) ficam de fora, de propósito. */
 .page-container {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--gutter);
+}
+
+/* Títulos: Montserrat pesada, tracking levemente fechado */
+h1, h2, h3 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 h1 {
   font-size: var(--font-size-h1);
-  font-weight: 800;
-  line-height: 1.2;
+  line-height: 1;
 }
 
 h2 {
   font-size: var(--font-size-h2);
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: var(--font-size-title);
+  line-height: 1.15;
   font-weight: 700;
-  line-height: 1.25;
 }
 
 p, li {
   font-size: var(--font-size-body);
+}
+
+strong {
+  font-weight: 700;
+  color: var(--color-ink);
 }
 
 small {
@@ -44,12 +69,27 @@ small {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-cobalt);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-orange-ink);
 }
 
 img {
   max-width: 100%;
   display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal-orange);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
 }
 
 /* Visível só pra leitor de tela — não some do fluxo, só sai da área visível */
@@ -71,10 +111,10 @@ img {
   top: -100%;
   left: var(--space-sm);
   z-index: 100;
-  background-color: var(--color-secondary);
-  color: var(--color-bg);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
   padding: var(--space-xs) var(--space-sm);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
 }
 

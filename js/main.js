@@ -39,7 +39,20 @@ function attachSwipe(imageWrap, card) {
   });
 }
 
-function buildProductCard(product) {
+// Versões WebP geradas a partir dos PNGs originais (PNG/JPEG originais, mesmo nome; "-600" = versão reduzida pra cards/miniaturas)
+function toWebp(src, small) {
+  if (!/\.(png|jpe?g)$/i.test(src)) return src;
+  return src.replace(/\.(png|jpe?g)$/i, small ? '-600.webp' : '.webp');
+}
+
+function createElement(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+
+function buildProductCard(product, index) {
   const card = document.createElement('a');
   card.className = 'card product-card';
   card.href = `/produtos/${product.id}.html`;
@@ -57,46 +70,57 @@ function buildProductCard(product) {
     front.className = hasMultipleImages
       ? 'product-card__image product-card__image--front'
       : 'product-card__image';
-    front.src = images[0];
+    front.src = toWebp(images[0], true);
     front.alt = product.name;
-    front.width = 1254;
-    front.height = 1254;
+    front.width = 600;
+    front.height = 600;
     front.loading = 'lazy';
+    front.decoding = 'async';
     imageWrap.appendChild(front);
 
     if (hasMultipleImages) {
       const back = document.createElement('img');
       back.className = 'product-card__image product-card__image--back';
-      back.src = images[1];
+      back.src = toWebp(images[1], true);
       back.alt = '';
-      back.width = 1254;
-      back.height = 1254;
+      back.width = 600;
+      back.height = 600;
       back.loading = 'lazy';
+      back.decoding = 'async';
       imageWrap.appendChild(back);
       attachSwipe(imageWrap, card);
     }
+
+    const variantCount = (product.variants || []).length;
+    if (variantCount > 1) {
+      imageWrap.appendChild(createElement('span', 'product-card__view', `${variantCount} cores`));
+    }
   } else {
-    const placeholder = document.createElement('div');
-    placeholder.className = 'product-card__image-placeholder';
-    placeholder.textContent = 'Foto em breve';
-    imageWrap.appendChild(placeholder);
+    imageWrap.appendChild(createElement('div', 'product-card__image-placeholder', 'Foto em breve'));
   }
 
-  const priceText = product.price ? `R$ ${product.price}` : 'Preço em breve';
-  const priceClass = product.price
-    ? 'product-card__price'
-    : 'product-card__price product-card__price--soon';
+  const info = createElement('div', 'product-card__info');
 
-  const info = document.createElement('div');
-  info.className = 'product-card__info';
-  info.innerHTML = `
-    <p class="product-card__category">${product.category}</p>
-    <h3 class="product-card__name">${product.name}</h3>
-    <p class="${priceClass}">${priceText}</p>
-  `;
+  const meta = createElement('p', 'product-card__meta');
+  meta.appendChild(createElement('span', 'product-card__category', product.category));
+  meta.appendChild(createElement('span', 'product-card__index', String(index + 1).padStart(2, '0')));
+  info.appendChild(meta);
+
+  info.appendChild(createElement('h3', 'product-card__name', product.name));
+
+  const footer = createElement('div', 'product-card__footer');
+  footer.appendChild(product.price
+    ? createElement('p', 'product-card__price', `R$ ${product.price}`)
+    : createElement('p', 'product-card__price product-card__price--soon', 'Preço em breve'));
+  const cta = createElement('span', 'product-card__cta', 'Ver →');
+  cta.setAttribute('aria-hidden', 'true');
+  footer.appendChild(cta);
+  info.appendChild(footer);
 
   card.appendChild(imageWrap);
   card.appendChild(info);
+
+  if (window.LamitSite) window.LamitSite.attachTilt(card);
   return card;
 }
 
@@ -149,7 +173,7 @@ async function renderProductGrid() {
 
   function renderCards(list) {
     grid.innerHTML = '';
-    list.forEach((product) => grid.appendChild(buildProductCard(product)));
+    list.forEach((product) => grid.appendChild(buildProductCard(product, products.indexOf(product))));
   }
 
   renderCategoryTabs(tabsContainer, products, renderCards);

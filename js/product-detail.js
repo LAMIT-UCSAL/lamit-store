@@ -4,6 +4,12 @@
 const CHEVRON_LEFT_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>';
 const CHEVRON_RIGHT_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>';
 
+// Versões WebP geradas a partir dos PNGs originais (PNG/JPEG originais, mesmo nome; "-600" = versão reduzida pra miniaturas)
+function toWebp(src, small) {
+  if (!/\.(png|jpe?g)$/i.test(src)) return src;
+  return src.replace(/\.(png|jpe?g)$/i, small ? '-600.webp' : '.webp');
+}
+
 function getProductIdFromUrl() {
   const filename = location.pathname.split('/').pop();
   return filename.replace(/\.html$/, '');
@@ -14,10 +20,13 @@ function getAllImages(product) {
   (product.variants || []).forEach((variant) => {
     (variant.images || []).forEach((src, index) => {
       const view = index === 0 ? 'frente' : 'costas';
-      const alt = variant.name
-        ? `${product.name} — ${variant.name}, ${view}`
-        : `${product.name} — ${view}`;
-      images.push({ src, alt });
+      const customAlt = variant.imageAlts && variant.imageAlts[index];
+      const alt = customAlt
+        ? `${product.name} — ${customAlt}`
+        : variant.name
+          ? `${product.name} — ${variant.name}, ${view}`
+          : `${product.name} — ${view}`;
+      images.push({ src: toWebp(src), thumb: toWebp(src, true), alt });
     });
   });
   return images;
@@ -52,9 +61,13 @@ function renderGallery(container, product) {
   const mainImg = document.createElement('img');
   mainImg.src = images[0].src;
   mainImg.alt = images[0].alt;
-  mainImg.width = 1254;
-  mainImg.height = 1254;
+  mainImg.width = 1200;
+  mainImg.height = 1200;
+  mainImg.fetchPriority = 'high';
   mainWrap.appendChild(mainImg);
+
+  let ticks = null;
+  let counter = null;
 
   let prevBtn = null;
   let nextBtn = null;
@@ -65,6 +78,10 @@ function renderGallery(container, product) {
     currentIndex = (index + images.length) % images.length;
     mainImg.src = images[currentIndex].src;
     mainImg.alt = images[currentIndex].alt;
+    if (ticks) {
+      ticks.forEach((tick, i) => tick.classList.toggle('is-active', i === currentIndex));
+      counter.textContent = formatCounter(currentIndex, images.length);
+    }
     if (thumbButtons) {
       thumbButtons.forEach((t, i) => {
         const active = i === currentIndex;
@@ -95,6 +112,25 @@ function renderGallery(container, product) {
 
     mainWrap.appendChild(prevBtn);
     mainWrap.appendChild(nextBtn);
+
+    // Scrubber — ticks + contador "01 / 06", como no carrossel do site
+    const scrubber = document.createElement('div');
+    scrubber.className = 'product-detail__scrubber';
+    scrubber.setAttribute('aria-hidden', 'true');
+    const tickRow = document.createElement('div');
+    tickRow.className = 'product-detail__ticks';
+    ticks = images.map((_, i) => {
+      const tick = document.createElement('span');
+      tick.className = i === 0 ? 'product-detail__tick is-active' : 'product-detail__tick';
+      tickRow.appendChild(tick);
+      return tick;
+    });
+    counter = document.createElement('span');
+    counter.className = 'product-detail__counter';
+    counter.textContent = formatCounter(0, images.length);
+    scrubber.appendChild(tickRow);
+    scrubber.appendChild(counter);
+    mainWrap.appendChild(scrubber);
   }
 
   gallery.appendChild(mainWrap);
@@ -114,10 +150,10 @@ function renderGallery(container, product) {
       thumb.setAttribute('aria-label', image.alt);
 
       const thumbImg = document.createElement('img');
-      thumbImg.src = image.src;
+      thumbImg.src = image.thumb;
       thumbImg.alt = '';
-      thumbImg.width = 1254;
-      thumbImg.height = 1254;
+      thumbImg.width = 600;
+      thumbImg.height = 600;
       thumbImg.loading = 'lazy';
       thumb.appendChild(thumbImg);
 
@@ -130,6 +166,11 @@ function renderGallery(container, product) {
   }
 
   container.appendChild(gallery);
+}
+
+function formatCounter(index, total) {
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${pad(index + 1)} / ${pad(total)}`;
 }
 
 function renderInlineBold(text) {
@@ -159,7 +200,10 @@ function renderVariantList(container, title, items) {
   if (!items || items.length === 0) return null;
   const block = document.createElement('div');
   block.className = 'product-detail__variant';
-  block.innerHTML = `<strong>${title}:</strong> ${items.join(', ')}`;
+  const label = document.createElement('strong');
+  label.textContent = title;
+  block.appendChild(label);
+  block.appendChild(document.createTextNode(items.join(' · ')));
   container.appendChild(block);
   return block;
 }
@@ -171,7 +215,7 @@ function renderSizeChips(container, sizes) {
   block.className = 'product-detail__variant';
 
   const label = document.createElement('strong');
-  label.textContent = sizes.length === 1 ? 'Tamanho:' : 'Tamanhos:';
+  label.textContent = sizes.length === 1 ? 'Tamanho' : 'Tamanhos';
   block.appendChild(label);
 
   const chips = document.createElement('div');
@@ -214,11 +258,11 @@ function renderStickyBar(product) {
   bar.appendChild(price);
 
   const cta = document.createElement('a');
-  cta.className = 'btn';
+  cta.className = 'btn btn--on-dark';
   cta.href = product.formsUrl;
   cta.target = '_blank';
   cta.rel = 'noopener noreferrer';
-  cta.textContent = 'Pedir';
+  cta.textContent = 'Pedir →';
   bar.appendChild(cta);
 
   document.body.classList.add('has-sticky-bar');
@@ -253,12 +297,23 @@ async function renderProductDetail() {
   main.textContent = '';
 
   if (breadcrumb) {
+    const sep = document.createElement('span');
+    sep.className = 'breadcrumb__sep';
+    sep.setAttribute('aria-hidden', 'true');
+    sep.textContent = '/';
     const current = document.createElement('span');
-    current.textContent = ` > ${product.name}`;
+    current.setAttribute('aria-current', 'page');
+    current.textContent = product.name;
+    breadcrumb.appendChild(sep);
     breadcrumb.appendChild(current);
   }
 
   renderGallery(main, product);
+
+  const kicker = document.createElement('span');
+  kicker.className = 'kicker product-detail__kicker';
+  kicker.textContent = `${product.category} · Drop 01`;
+  main.appendChild(kicker);
 
   const h1 = document.createElement('h1');
   h1.className = 'product-detail__title';
@@ -328,10 +383,17 @@ async function renderProductDetail() {
   main.appendChild(body);
 
   const priceNote = document.createElement('p');
-  priceNote.className = 'product-detail__price-note';
-  priceNote.textContent = product.price
-    ? `Preço: R$ ${product.price}`
-    : 'Preço em breve — você confirma o valor certinho antes de fechar o pedido, direto no formulário.';
+  if (product.price) {
+    priceNote.className = 'product-detail__price-note';
+    const priceLabel = document.createElement('span');
+    priceLabel.className = 'product-detail__price-label';
+    priceLabel.textContent = 'Preço';
+    priceNote.appendChild(priceLabel);
+    priceNote.appendChild(document.createTextNode(`R$ ${product.price}`));
+  } else {
+    priceNote.className = 'product-detail__price-note product-detail__price-note--soon';
+    priceNote.textContent = 'Preço em breve — você confirma o valor certinho antes de fechar o pedido, direto no formulário.';
+  }
   main.appendChild(priceNote);
 
   const colorNames = (product.variants || []).map((v) => v.name).filter(Boolean);
@@ -343,11 +405,11 @@ async function renderProductDetail() {
 
   if (product.formsUrl) {
     const ctaInline = document.createElement('a');
-    ctaInline.className = 'btn product-detail__cta-inline';
+    ctaInline.className = 'btn btn--block product-detail__cta-inline';
     ctaInline.href = product.formsUrl;
     ctaInline.target = '_blank';
     ctaInline.rel = 'noopener noreferrer';
-    ctaInline.textContent = 'Pedir';
+    ctaInline.textContent = 'Fazer pedido →';
     main.appendChild(ctaInline);
   }
 

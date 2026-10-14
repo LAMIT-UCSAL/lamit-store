@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lamit Store</title>
-  <meta name="description" content="Loja oficial da LAMIT — camisetas e ecobag da liga, direto pra comunidade. Primeiro drop oficial de produtos.">
+  <meta name="description" content="Loja oficial da LAMIT — camisetas, ecobag e caneca da liga, direto pra comunidade. Primeiro drop oficial de produtos.">
   <link rel="canonical" href="https://lamitstore.netlify.app/produtos/camiseta-brasao-preta.html">
-  <link rel="icon" type="image/png" href="/assets/logos/03_LAMIT_ESCUDO.png">
+  <link rel="icon" type="image/png" href="/assets/brand/favicon-64.png">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lamit Store — a loja oficial da LAMIT">
-  <meta property="og:description" content="Camisetas e ecobag oficiais da LAMIT — feito pra quem já é (ou quer ser) parte da comunidade.">
+  <meta property="og:description" content="Camisetas, ecobag e caneca oficiais da LAMIT — feito pra quem já é (ou quer ser) parte da comunidade.">
   <meta property="og:image" content="https://lamitstore.netlify.app/assets/logos/03_LAMIT_ESCUDO.png">
   <meta property="og:url" content="https://lamitstore.netlify.app/produtos/camiseta-brasao-preta.html">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FBFAF8">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/products/camisetas/CamisaBrasãoFrente.webp" fetchpriority="high">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/components.css">
@@ -23,24 +26,70 @@
 <body>
   <a href="#product-detail" class="skip-link">Pular para o conteúdo</a>
 
+  <!-- SHARED: header v2 -->
   <header class="site-header">
-    <a href="/" class="site-header__brand">
-      <img src="/assets/logos/lamitEscudoVazadoBranco.png" alt="" class="site-header__mark" width="381" height="445">
-      <span class="site-header__wordmark">Lamit Store</span>
-    </a>
+    <div class="site-header__inner">
+      <a href="/" class="site-header__brand" aria-label="Lamit Store — início">
+        <img src="/assets/brand/escudo.webp" alt="" class="site-header__logo" width="158" height="192">
+        <span class="site-header__wordmark"><strong>LAMIT</strong> Store</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Principal">
+        <a href="/#drop">Drop 01</a>
+        <a href="/#como-funciona">Como funciona</a>
+        <a href="/#sobre">Sobre</a>
+        <a href="https://linktr.ee/lamit.ucsal" class="site-nav__external" target="_blank" rel="noopener noreferrer">LAMIT ↗</a>
+      </nav>
+    </div>
   </header>
 
   <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Catálogo</a>
+    <a href="/#drop">Drop 01</a>
   </nav>
 
   <main id="product-detail"></main>
 
-  <!-- SHARED: footer v1 -->
-  <footer>
-    <p><small>Os dados fornecidos no formulário de pedido (nome, contato, comprovante de pagamento) são usados exclusivamente pela LAMIT para processar o seu pedido, sem compartilhamento com terceiros além do necessário para produção e entrega.</small></p>
+  <!-- SHARED: footer v2 -->
+  <footer class="site-footer">
+    <div class="broadcast-band broadcast-band--thin" aria-hidden="true"></div>
+    <div class="site-footer__inner page-container">
+      <div>
+        <img src="/assets/brand/logo-horizontal-white.svg" alt="LAMIT" class="site-footer__logo" width="135" height="64" loading="lazy">
+        <p class="site-footer__tagline">Inovação, tecnologia e comunidade.</p>
+        <nav class="site-footer__social" aria-label="Redes sociais da LAMIT">
+          <a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><img src="/assets/icons/link.png" alt="" width="20" height="20" loading="lazy"></a>
+          <a href="https://www.instagram.com/lamit.ucsal" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="/assets/icons/instagram.png" alt="" width="20" height="20" loading="lazy"></a>
+          <a href="https://www.tiktok.com/@lamit.ucsal" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="/assets/icons/tiktokicon.png" alt="" width="20" height="20" loading="lazy"></a>
+          <a href="https://www.linkedin.com/company/lamit-ucsal/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/assets/icons/linkedin.png" alt="" width="20" height="20" loading="lazy"></a>
+        </nav>
+      </div>
+      <div>
+        <p class="site-footer__heading">Loja</p>
+        <ul class="site-footer__links">
+          <li><a href="/#drop">Drop 01</a></li>
+          <li><a href="/#como-funciona">Como funciona</a></li>
+          <li><a href="/#sobre">Sobre</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="site-footer__heading">LAMIT</p>
+        <ul class="site-footer__links">
+          <li><a href="https://linktr.ee/lamit.ucsal" target="_blank" rel="noopener noreferrer">Links oficiais ↗</a></li>
+          <li><a href="https://www.instagram.com/lamit.ucsal" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+          <li><a href="https://www.linkedin.com/company/lamit-ucsal/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-container site-footer__legal">
+      <small>Os dados fornecidos no formulário de pedido (nome, contato, comprovante de pagamento) são usados exclusivamente pela LAMIT para processar o seu pedido, sem compartilhamento com terceiros além do necessário para produção e entrega.</small>
+      <span class="site-footer__year">2026 LAMIT</span>
+    </div>
   </footer>
 
+  <script src="/js/site.js" defer></script>
   <script src="/js/product-detail.js" defer></script>
+  <script src="/js/grainient.js" defer></script>
 </body>
 </html>

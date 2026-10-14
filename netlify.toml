@@ -1,3 +1,5 @@
+# Publica só dist/, montada por scripts/build.mjs a partir de uma lista de arquivos públicos.
+# Antes era publish = "." e o repositório inteiro (docs/, .aiox-core/, .claude/...) ia para o ar.
 [build]
-  publish = "."
-  command = ""
+  command = "node scripts/build.mjs"
+  publish = "dist"

@@ -4,18 +4,23 @@ Catálogo digital do primeiro drop de produtos da LAMIT (Liga Acadêmica de Mara
 
 ## Rodar localmente
 
-Nenhuma instalação de dependências é necessária. Escolha uma das opções:
+Nenhuma instalação de dependências é necessária:
 
 ```bash
 npx serve .
 ```
 
-ou, se o Netlify CLI estiver instalado:
-
-```bash
-netlify dev
-```
-
 ## Deploy
 
 Push na branch `main` → deploy automático no Netlify (ver `netlify.toml`).
+
+O Netlify roda `node scripts/build.mjs`, que monta `dist/` só com os arquivos públicos (`index.html`, `css/`, `js/`, `data/`, `produtos/` e `assets/`, sem o material interno de marca e sem os PNG/JPEG originais das fotos). Só `dist/` é publicada: `.env`, `docs/`, `.aiox-core/`, `.claude/` e o resto do repositório ficam fora do ar.
+
+Para conferir localmente o que vai para o ar:
+
+```bash
+npm run build
+npx serve dist
+```
+
+Ao criar uma pasta ou arquivo público novo na raiz, inclua-o em `PUBLIC_ENTRIES` no `scripts/build.mjs`.

@@ -39,11 +39,7 @@ function attachSwipe(imageWrap, card) {
   });
 }
 
-// Versões WebP geradas a partir dos PNGs originais (PNG/JPEG originais, mesmo nome; "-600" = versão reduzida pra cards/miniaturas)
-function toWebp(src, small) {
-  if (!/\.(png|jpe?g)$/i.test(src)) return src;
-  return src.replace(/\.(png|jpe?g)$/i, small ? '-600.webp' : '.webp');
-}
+// toWebp() vem de js/site.js (carregado antes deste arquivo)
 
 function createElement(tag, className, text) {
   const el = document.createElement(tag);

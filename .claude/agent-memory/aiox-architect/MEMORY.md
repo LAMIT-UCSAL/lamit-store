@@ -1,1 +1,2 @@
 - [Alinhamento loja x site](project_store-site-alignment.md) — recomendação Vite vanilla + tokens compartilhados; paleta canônica pendente (out/2026)
+- [Auditoria técnica do site](project_site-technical-audit.md) — NODE_ENV=development no .env do site, deploy sem config, fases e pacote lamit-brand (out/2026)

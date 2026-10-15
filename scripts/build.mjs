@@ -2,9 +2,10 @@
 // Lista de inclusão, não de exclusão: qualquer arquivo novo na raiz (.env, docs/, .aiox-core/,
 // .claude/, node_modules/...) fica fora do deploy por padrão.
 
-import { cpSync, existsSync, rmSync, mkdirSync } from 'node:fs';
+import { cpSync, existsSync, rmSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PAGES, applyPartials } from './partials.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
@@ -32,6 +33,12 @@ try {
     const source = join(root, entry);
     if (!existsSync(source)) throw new Error(`entrada pública não encontrada: ${entry}`);
     cpSync(source, join(dist, entry), { recursive: true, filter: (path) => !isExcluded(path) });
+  }
+
+  // Header e rodapé saem sempre de partials/, mesmo que alguma página esteja desatualizada
+  for (const page of PAGES) {
+    const file = join(dist, page);
+    writeFileSync(file, applyPartials(readFileSync(file, 'utf8')));
   }
 
   console.log(`dist/ pronto com: ${PUBLIC_ENTRIES.join(', ')}`);

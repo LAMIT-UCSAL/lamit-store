@@ -1219,9 +1219,7 @@ body.has-sticky-bar .site-footer {
   text-transform: uppercase;
 }
 
-/* Resumo de cores e CTA embutido — só existem pra montagem da coluna do desktop;
-   no mobile a barra fixa já cobre o CTA e a versão completa das cores está na descrição */
-.product-detail__colors-block,
+/* CTA embutido — só existe pra coluna do desktop; no mobile a barra fixa cobre o pedido */
 .product-detail__cta-inline {
   display: none;
 }

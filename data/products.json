@@ -30,7 +30,8 @@
       "sizes": ["P", "M", "G", "GG"],
       "price": 50,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Marrom+Simples"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Marrom+Simples",
+      "formsFields": { "size": "1368938110" }
     },
     {
       "id": "camiseta-brasao-preta",
@@ -64,7 +65,8 @@
       "sizes": ["P", "M", "G", "GG"],
       "price": 50,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Bras%C3%A3o+Preta"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Bras%C3%A3o+Preta",
+      "formsFields": { "size": "1368938110" }
     },
     {
       "id": "camiseta-salvador",
@@ -88,6 +90,7 @@
       "variants": [
         {
           "name": "Atlântico",
+          "formsValue": "Estampa Azul",
           "description": "branca com estampa em azul e laranja, inspirada nas cores do mar e do pôr do sol.",
           "images": [
             "/assets/products/camisetas/CamisaSalvadorAzulFrente.png",
@@ -96,6 +99,7 @@
         },
         {
           "name": "Areia",
+          "formsValue": "Estampa Dourada",
           "description": "branca com estampa em tom dourado/bege, uma interpretação mais leve e minimalista da arte.",
           "images": [
             "/assets/products/camisetas/CamisaSalvadorDouradaFrente.png",
@@ -104,6 +108,7 @@
         },
         {
           "name": "Dendê",
+          "formsValue": "Estampa Branca",
           "description": "preta com estampa branca e pôr do sol laranja, trazendo o contraste mais marcante da coleção.",
           "images": [
             "/assets/products/camisetas/CamisaSalvadorBrancaFrente.png",
@@ -114,7 +119,8 @@
       "sizes": ["P", "M", "G", "GG"],
       "price": 50,
       "deliveryNote": "Este modelo é produzido sob encomenda: os pedidos são enviados ao fornecedor quando o total de pedidos desse modelo — somando todos os compradores — atingir 30 unidades. Não é preciso comprar 30 peças sozinho. Se esse total não for atingido em até 1 mês, seguimos com a quantidade que tivermos. Prazo de produção: cerca de 2 semanas após o envio ao fornecedor.",
-      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Estampa+Salvador"
+      "formsUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd1SPDt08mYjxqGzq5v2gGmRPyE15XsC9aRQ4DVZ_oO0hTDGA/viewform?usp=pp_url&entry.1726040702=Camiseta+Estampa+Salvador",
+      "formsFields": { "size": "1006508904", "color": "18337347" }
     },
     {
       "id": "ecobag",

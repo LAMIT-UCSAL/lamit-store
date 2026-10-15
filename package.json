@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "partials": "node scripts/partials.mjs",
+    "partials:check": "node scripts/partials.mjs --check"
   }
 }

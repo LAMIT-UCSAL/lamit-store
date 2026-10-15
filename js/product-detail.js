@@ -4,11 +4,7 @@
 const CHEVRON_LEFT_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>';
 const CHEVRON_RIGHT_SVG = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>';
 
-// Versões WebP geradas a partir dos PNGs originais (PNG/JPEG originais, mesmo nome; "-600" = versão reduzida pra miniaturas)
-function toWebp(src, small) {
-  if (!/\.(png|jpe?g)$/i.test(src)) return src;
-  return src.replace(/\.(png|jpe?g)$/i, small ? '-600.webp' : '.webp');
-}
+// toWebp() vem de js/site.js (carregado antes deste arquivo)
 
 function getProductIdFromUrl() {
   const filename = location.pathname.split('/').pop();
@@ -17,7 +13,7 @@ function getProductIdFromUrl() {
 
 function getAllImages(product) {
   const images = [];
-  (product.variants || []).forEach((variant) => {
+  (product.variants || []).forEach((variant, variantIndex) => {
     (variant.images || []).forEach((src, index) => {
       const view = index === 0 ? 'frente' : 'costas';
       const customAlt = variant.imageAlts && variant.imageAlts[index];
@@ -26,7 +22,7 @@ function getAllImages(product) {
         : variant.name
           ? `${product.name} — ${variant.name}, ${view}`
           : `${product.name} — ${view}`;
-      images.push({ src: toWebp(src), thumb: toWebp(src, true), alt });
+      images.push({ src: toWebp(src), thumb: toWebp(src, true), alt, variantIndex });
     });
   });
   return images;
@@ -50,7 +46,7 @@ function renderGallery(container, product) {
     gallery.appendChild(note);
 
     container.appendChild(gallery);
-    return;
+    return null;
   }
 
   const gallery = document.createElement('div');
@@ -166,6 +162,14 @@ function renderGallery(container, product) {
   }
 
   container.appendChild(gallery);
+
+  return {
+    // Leva a galeria para a primeira foto da variante (usado pela escolha de cor)
+    showVariant(variantIndex) {
+      const index = images.findIndex((image) => image.variantIndex === variantIndex);
+      if (index >= 0) setIndex(index);
+    },
+  };
 }
 
 function formatCounter(index, total) {
@@ -208,24 +212,28 @@ function renderVariantList(container, title, items) {
   return block;
 }
 
-function renderSizeChips(container, sizes) {
-  if (!sizes || sizes.length === 0) return null;
+// Grupo de chips de escolha única; clicar de novo no selecionado desmarca.
+// onChange recebe o value do chip selecionado, ou null.
+function renderChipGroup(container, title, options, onChange) {
+  if (!options || options.length === 0) return null;
 
   const block = document.createElement('div');
   block.className = 'product-detail__variant';
 
   const label = document.createElement('strong');
-  label.textContent = sizes.length === 1 ? 'Tamanho' : 'Tamanhos';
+  label.textContent = title;
   block.appendChild(label);
 
   const chips = document.createElement('div');
   chips.className = 'product-detail__chips';
+  chips.setAttribute('role', 'group');
+  chips.setAttribute('aria-label', title);
 
-  sizes.forEach((size) => {
+  options.forEach((option) => {
     const chip = document.createElement('button');
     chip.type = 'button';
     chip.className = 'product-detail__chip';
-    chip.textContent = size;
+    chip.textContent = option.label;
     chip.setAttribute('aria-pressed', 'false');
     chip.addEventListener('click', () => {
       const alreadySelected = chip.classList.contains('is-selected');
@@ -237,6 +245,7 @@ function renderSizeChips(container, sizes) {
         chip.classList.add('is-selected');
         chip.setAttribute('aria-pressed', 'true');
       }
+      if (onChange) onChange(alreadySelected ? null : option.value);
     });
     chips.appendChild(chip);
   });
@@ -246,11 +255,23 @@ function renderSizeChips(container, sizes) {
   return block;
 }
 
-function renderStickyBar(product) {
-  if (!product.formsUrl) return;
+// Link do Google Forms com produto (já no formsUrl), tamanho e cor pré-preenchidos.
+// formsFields guarda os IDs das perguntas do Forms ("entry.<id>") de cada produto.
+function buildOrderUrl(product, selection) {
+  const url = new URL(product.formsUrl);
+  const fields = product.formsFields || {};
+  if (fields.size && selection.size) url.searchParams.set(`entry.${fields.size}`, selection.size);
+  if (fields.color && selection.color) url.searchParams.set(`entry.${fields.color}`, selection.color);
+  return url.toString();
+}
 
-  const bar = document.createElement('div');
+function renderStickyBar(product) {
+  if (!product.formsUrl) return null;
+
+  // <aside> nomeado: a barra fica fora do <main>, então precisa ser uma região própria
+  const bar = document.createElement('aside');
   bar.className = 'product-detail__sticky-bar';
+  bar.setAttribute('aria-label', 'Pedido rápido');
 
   const price = document.createElement('span');
   price.className = 'product-detail__sticky-bar-price';
@@ -267,6 +288,7 @@ function renderStickyBar(product) {
 
   document.body.classList.add('has-sticky-bar');
   document.body.appendChild(bar);
+  return cta;
 }
 
 async function renderProductDetail() {
@@ -308,7 +330,7 @@ async function renderProductDetail() {
     breadcrumb.appendChild(current);
   }
 
-  renderGallery(main, product);
+  const gallery = renderGallery(main, product);
 
   const kicker = document.createElement('span');
   kicker.className = 'kicker product-detail__kicker';
@@ -396,11 +418,43 @@ async function renderProductDetail() {
   }
   main.appendChild(priceNote);
 
-  const colorNames = (product.variants || []).map((v) => v.name).filter(Boolean);
-  const colorsBlock = renderVariantList(main, 'Cores', colorNames);
+  const selection = { size: null, color: null };
+  const orderLinks = [];
+  const updateOrderLinks = () => {
+    if (!product.formsUrl) return;
+    const href = buildOrderUrl(product, selection);
+    orderLinks.forEach((link) => { link.href = href; });
+  };
+
+  const variants = product.variants || [];
+  let colorsBlock;
+  if (variants.length > 1) {
+    // Mais de uma cor: escolha vira chip, leva a galeria para a variante e entra no pedido
+    colorsBlock = renderChipGroup(
+      main,
+      'Cor',
+      variants.map((variant, index) => ({ label: variant.name, value: index })),
+      (index) => {
+        selection.color = index === null ? null : (variants[index].formsValue || null);
+        if (index !== null && gallery) gallery.showVariant(index);
+        updateOrderLinks();
+      },
+    );
+  } else {
+    colorsBlock = renderVariantList(main, 'Cor', variants.map((v) => v.name).filter(Boolean));
+  }
   if (colorsBlock) colorsBlock.classList.add('product-detail__colors-block');
 
-  const sizesBlock = renderSizeChips(main, product.sizes);
+  const sizes = product.sizes || [];
+  const sizesBlock = renderChipGroup(
+    main,
+    'Tamanho',
+    sizes.map((size) => ({ label: size, value: size })),
+    (size) => {
+      selection.size = size;
+      updateOrderLinks();
+    },
+  );
   if (sizesBlock) sizesBlock.classList.add('product-detail__sizes-block');
 
   if (product.formsUrl) {
@@ -411,9 +465,11 @@ async function renderProductDetail() {
     ctaInline.rel = 'noopener noreferrer';
     ctaInline.textContent = 'Fazer pedido →';
     main.appendChild(ctaInline);
+    orderLinks.push(ctaInline);
   }
 
-  renderStickyBar(product);
+  const stickyCta = renderStickyBar(product);
+  if (stickyCta) orderLinks.push(stickyCta);
 
   document.title = `${product.name} — Lamit Store`;
 }

@@ -1,1 +1,2 @@
 - [QA approach in lamit-store](project_qa_approach.md) — no test/lint scripts; Playwright+axe from scratchpad; gate path; known out-of-scope risks
+- [lamit-site QA context](project_lamit_site.md) — React SPA sibling repo; intentional design, audit location, measuring tips

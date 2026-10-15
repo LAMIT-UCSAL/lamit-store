@@ -24,3 +24,19 @@ npx serve dist
 ```
 
 Ao criar uma pasta ou arquivo público novo na raiz, inclua-o em `PUBLIC_ENTRIES` no `scripts/build.mjs`.
+
+## Header e rodapé compartilhados
+
+A fonte única fica em `partials/header.html` e `partials/footer.html`. Cada página guarda uma cópia entre os marcadores `<!-- partial:NOME -->` e `<!-- /partial:NOME -->`, para continuar funcionando com `npx serve .`.
+
+- Editou um partial? Rode `npm run partials` para atualizar as páginas.
+- `npm run partials:check` falha se alguma página estiver desatualizada.
+- O build sempre aplica os partials na `dist/`, então o que vai para o ar nunca diverge.
+
+## Pedido pelo Google Forms
+
+O botão "Fazer pedido" abre o Forms já com produto, tamanho e (na Soterô) cor marcados. Os IDs das perguntas ficam em `data/products.json`: `formsFields` (`size`, `color`) em cada produto e `formsValue` em cada variante de cor. Se as perguntas do Forms mudarem, atualize esses IDs.
+
+## Prévia de compartilhamento
+
+Cada página tem título, descrição e imagem próprios para WhatsApp, Instagram e afins. As imagens (1200×630) ficam em `assets/og/` e foram geradas a partir da primeira foto de cada produto; ao trocar a foto principal ou criar um produto, gere uma nova e atualize as tags `og:` da página.

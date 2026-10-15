@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lamit Store</title>
-  <meta name="description" content="Loja oficial da LAMIT — camisetas, ecobag e caneca da liga, direto pra comunidade. Primeiro drop oficial de produtos.">
+  <title>Lamit Store — a loja oficial da LAMIT</title>
+  <meta name="description" content="Camisetas, ecobag e caneca oficiais da LAMIT — feito pra quem já é (ou quer ser) parte da comunidade.">
   <link rel="canonical" href="https://lamitstore.netlify.app/">
-  <link rel="icon" type="image/png" href="/assets/brand/favicon-64.png">
+  <link rel="icon" type="image/png" href="/assets/brand/favicon.png">
   <meta name="theme-color" content="#FBFAF8">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lamit Store — a loja oficial da LAMIT">
   <meta property="og:description" content="Camisetas, ecobag e caneca oficiais da LAMIT — feito pra quem já é (ou quer ser) parte da comunidade.">
-  <meta property="og:image" content="https://lamitstore.netlify.app/assets/logos/03_LAMIT_ESCUDO.png">
+  <meta property="og:image" content="https://lamitstore.netlify.app/assets/og/home.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Três pessoas vestindo camisetas da coleção LAMIT em Salvador">
   <meta property="og:url" content="https://lamitstore.netlify.app/">
   <meta name="twitter:card" content="summary_large_image">
   <script>document.documentElement.classList.add('js');</script>
@@ -26,7 +29,7 @@
 <body>
   <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
 
-  <!-- SHARED: header v2 -->
+  <!-- partial:header (fonte: partials/header.html, aplique com npm run partials) -->
   <header class="site-header">
     <div class="site-header__inner">
       <a href="/" class="site-header__brand" aria-label="Lamit Store — início">
@@ -44,6 +47,7 @@
       </nav>
     </div>
   </header>
+  <!-- /partial:header -->
 
   <main id="main-content">
     <section class="hero">
@@ -182,7 +186,7 @@
     </section>
   </main>
 
-  <!-- SHARED: footer v2 -->
+  <!-- partial:footer (fonte: partials/footer.html, aplique com npm run partials) -->
   <footer class="site-footer">
     <div class="broadcast-band broadcast-band--thin" aria-hidden="true"></div>
     <div class="site-footer__inner page-container">
@@ -218,6 +222,7 @@
       <span class="site-footer__year">2026 LAMIT</span>
     </div>
   </footer>
+  <!-- /partial:footer -->
 
   <script src="/js/site.js" defer></script>
   <script src="/js/main.js" defer></script>

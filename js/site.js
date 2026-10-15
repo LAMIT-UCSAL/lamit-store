@@ -92,7 +92,14 @@ function attachTilt(card) {
   });
 }
 
-window.LamitSite = { attachTilt };
+// Fotos são servidas em WebP, geradas a partir dos PNG/JPEG originais com o mesmo nome
+// ("-600" = versão reduzida para cards e miniaturas)
+function toWebp(src, small) {
+  if (!/\.(png|jpe?g)$/i.test(src)) return src;
+  return src.replace(/\.(png|jpe?g)$/i, small ? '-600.webp' : '.webp');
+}
+
+window.LamitSite = { attachTilt, toWebp };
 
 initNavToggle();
 initReveal();

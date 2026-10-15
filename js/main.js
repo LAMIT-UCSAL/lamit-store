@@ -148,6 +148,15 @@ function renderCategoryTabs(container, products, onFilter) {
 
     container.appendChild(btn);
   });
+
+  // Filtro numa linha só: enquanto houver categorias escondidas à direita, a borda esmaece (dica de arrastar)
+  const updateOverflowHint = () => {
+    const hasMore = container.scrollLeft + container.clientWidth < container.scrollWidth - 2;
+    container.classList.toggle('has-more', hasMore);
+  };
+  container.addEventListener('scroll', updateOverflowHint, { passive: true });
+  window.addEventListener('resize', updateOverflowHint);
+  updateOverflowHint();
 }
 
 async function renderProductGrid() {

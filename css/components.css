@@ -435,7 +435,13 @@
 /* ------------------------------------------------------------------ */
 .category-tabs {
   display: flex;
-  flex-wrap: wrap;
+  /* sempre em uma linha: se não couber (mobile), as categorias rolam para o lado com o dedo */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   gap: 4px;
   padding: 4px;
   background: var(--color-paper-2);
@@ -446,7 +452,20 @@
   margin-bottom: var(--space-md);
 }
 
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* ainda há categorias à direita: a borda esmaece para indicar que dá para arrastar */
+.category-tabs.has-more {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+}
+
 .category-tabs__btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  scroll-snap-align: start;
   font-family: var(--font-primary);
   font-size: var(--font-size-small);
   font-weight: 600;

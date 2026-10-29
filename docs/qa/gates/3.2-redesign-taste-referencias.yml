@@ -1,0 +1,128 @@
+schema: 1
+story: '3.2'
+story_title: 'Redesign da Home com a Taste Skill e Referências (Specimen-Catalogue)'
+gate: CONCERNS
+status_reason: 'Todas as ACs estão atendidas (as ACs 1 e 2 com as decisões do usuário registradas no Change Log). Inspetor com 0 FAIL, build e partials OK, 71/71 no navegador e axe sem violações. Ficam CONCERNS por causa de A11Y-001 (contraste do texto da faixa-manifesto sobre o Grainient abaixo do AA) e de duas frases sem fonte (REQ-001, REQ-002). Correções pequenas, recomendadas antes do commit.'
+reviewer: 'Quinn (Test Architect)'
+reviewed_revision: 'working-tree sobre 3d6abfe (alterações ainda não commitadas)'
+updated: '2026-10-29T00:00:00-03:00'
+
+top_issues:
+  - id: 'A11Y-001'
+    severity: medium
+    status: open
+    finding: 'css/components.css:730 (.manifesto__text, 20px/600) e :723 (.manifesto__title) em branco sobre o Grainient (#C17402 / #0A3383, js/grainient.js:35-37). Amostragem de pixels atrás do texto com o canvas ativo, em 4 momentos, a 1440 e 390px. Parágrafo: mínimo de 2,62:1 e p5 entre 2,8 e 3,1:1 (precisa de 4,5:1, porque 600/20px não conta como texto grande). Título de 56px: p5 entre 3,1 e 3,5:1, com pixels a 2,6:1. O text-shadow que a 3.1 tinha no título da faixa foi removido.'
+    suggested_action: 'Adicionar text-shadow escuro (ex.: 0 1px 24px rgba(8,21,54,.45)) ou uma película radial em night atrás do bloco de texto, ou subir o parágrafo para 700 e 24px. Medir de novo: p5 >= 4,5 no parágrafo e >= 3 no título.'
+  - id: 'REQ-001'
+    severity: low
+    status: open
+    finding: 'index.html:172: "O formulário do pedido traz as instruções." não tem fonte em PRODUCT.md nem no conteúdo anterior (Article IV).'
+    suggested_action: 'Remover a frase ou confirmar com o time.'
+  - id: 'REQ-002'
+    severity: low
+    status: open
+    finding: 'index.html:63: "feitas sob encomenda em Salvador" afirma o local de produção. A fonte só sustenta "Feito sob encomenda" e "Salvador · BA", e o local do fornecedor não está documentado (Article IV).'
+    suggested_action: 'Reescrever, ex.: "...oficiais da LAMIT, de Salvador, feitas sob encomenda. A partir de R$ 35."'
+  - id: 'UX-001'
+    severity: low
+    status: open
+    finding: 'css/components.css:268: .btn--on-dark passou a ser branco com texto cobalto. O único uso restante é a barra fixa da PDP (js/product-detail.js:282), que muda de visual no mobile. Contraste OK (11:1), mas a mudança está fora do escopo e não aparece na File List.'
+    suggested_action: 'Confirmar com o usuário e registrar na File List, ou restaurar o estilo anterior só para a barra fixa.'
+  - id: 'MNT-001'
+    severity: low
+    status: open
+    finding: 'css/components.css:186-188: .kicker--on-dark ficou sem uso (.kicker continua em uso na PDP). Os tokens --font-size-xs e --font-size-small agora são iguais (css/tokens.css:45-46).'
+    suggested_action: 'Remover .kicker--on-dark; unificar os tokens numa próxima limpeza.'
+  - id: 'PROC-001'
+    severity: low
+    status: open
+    finding: 'assets/community/lamitPalestra.jpg (3,4MB, não rastreado) não é usado (a home usa o .webp) e não está na File List.'
+    suggested_action: 'Não incluir no commit.'
+  - id: 'PROC-002'
+    severity: low
+    status: open
+    finding: 'O Status da story continua "Ready", sem as transições InProgress/InReview. As ACs 1, 2 e 10 ainda descrevem o escopo anterior às decisões do usuário.'
+    suggested_action: '@po ajusta o texto das ACs; o lead atualiza o Status.'
+
+waiver: { active: false }
+
+quality_score: 80
+expires: '2026-11-12T00:00:00-03:00'
+
+evidence:
+  tests_reviewed: 0
+  automated_checks:
+    - 'npm run build: OK; npm run partials:check: todas as páginas em dia'
+    - 'inspect.mjs (--allow gradient,numbering,shadow,outlined-box,hairline): 0 FAIL, 4 WARN (cream, size-count, no-footage, side-scroll do filtro em 390). Linha de base: 14 FAIL, 6 WARN'
+    - 'stage-c.mjs (Playwright): 71/71 PASS, reproduzido pelo @qa'
+    - 'widths.mjs (320 a 1920px, home e PDP): overflow 0, h1 sem transbordar, 0 erros'
+    - 'axe-core 4.10.2 (wcag2a, wcag2aa, best-practice) na home em 1440 e 390: 0 violações'
+    - 'Amostragem de contraste por pixels atrás do texto no hero e no manifesto (canvas ativo, 4 amostras por largura)'
+  risks_identified: 1
+  trace:
+    ac_covered: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    ac_gaps: []
+    ac_notes:
+      ac1: 'h1 em 2 linhas de 320 a 1920; display de 112px (cerca de 6x o corpo); "A partir de R$ 35". Botão removido por decisão do usuário'
+      ac2: 'Grade de cards original por decisão do usuário; filtro, preços e links iguais ao products.json'
+      ac3: 'Ordem por tamanho e palavras, sem numeração; mínimos e prazos batem com deliveryNote'
+      ac4: 'As 5 respostas têm fonte em PRODUCT.md, exceto uma frase complementar (REQ-001)'
+      ac5: 'Faixa Grainient presente; contraste do texto abaixo do AA (A11Y-001)'
+      ac6: 'Faixa em night, aria-hidden, animation none com reduced-motion'
+      ac7: 'Fechamento com link para #drop'
+      ac8: 'Kickers e hairlines removidos da home; piso de 14px. O menu do header continua em caixa-alta (partial compartilhado, tratado como marca)'
+      ac9: 'Entrada escalonada, feedback em :active, reduced-motion coberto; sem still-page'
+      ac10: '0 FAIL; partials e build OK; PDPs sem regressão funcional (UX-001 é visual)'
+      ac11: 'Sem provas sociais inventadas'
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: 'Sem JS novo de risco (só setProperty de variáveis CSS). O link do Instagram mantém rel="noopener noreferrer".'
+  performance:
+    status: PASS
+    notes: 'Animações só com transform/opacity; o marquee é CSS puro; o JPG de 3,4MB não entra no dist (PROC-001).'
+  reliability:
+    status: PASS
+    notes: 'O conteúdo aparece sem JS (as classes .js controlam o reveal); fallback estático do Grainient mantido.'
+  maintainability:
+    status: CONCERNS
+    notes: 'Código morto pequeno (MNT-001); preços repetidos à mão no hero e no fechamento (index.html:63,186), com risco de divergir do products.json.'
+  accessibility:
+    status: CONCERNS
+    notes: 'Um único h1 e headings em ordem; details/summary acessível pelo teclado; marquee com aria-hidden e sem perda de informação; axe sem violações. Contraste do manifesto abaixo do AA (A11Y-001).'
+
+risks:
+  - id: 'RISK-DRIFT-001'
+    severity: low
+    owner: '@dev'
+    blocks_gate: false
+    finding: 'Os preços "R$ 35" e "R$ 50" estão fixos no HTML (index.html:63,186), fora do data/products.json.'
+    suggested_action: 'Ao mudar preços, atualizar os dois lugares; no futuro, gerar a partir do JSON.'
+
+recommendations:
+  immediate:
+    - action: 'Corrigir o contraste do manifesto (A11Y-001) e medir de novo'
+      refs: ['css/components.css:723', 'css/components.css:730']
+    - action: 'Remover ou ajustar as frases sem fonte (REQ-001, REQ-002)'
+      refs: ['index.html:63', 'index.html:172']
+    - action: 'Não commitar assets/community/lamitPalestra.jpg (PROC-001)'
+      refs: ['assets/community/lamitPalestra.jpg']
+  future:
+    - action: 'Confirmar o novo visual da barra fixa da PDP (UX-001); remover .kicker--on-dark e unificar os tokens xs/small (MNT-001)'
+      refs: ['css/components.css:186', 'css/components.css:268', 'css/tokens.css:45']
+  testing:
+    - 'Versionar em tests/ os scripts stage-c e widths (hoje só no scratchpad), mais a amostragem de contraste sobre o canvas.'
+
+coderabbit:
+  status: 'not_run'
+  notes: 'Projeto estático sem CodeRabbit configurado; revisão manual + Playwright/axe.'
+
+auto_decisions:
+  - 'Contraste sobre canvas medido por amostragem de pixels, porque o axe não avalia <canvas>.'
+  - 'Status da story não alterado: o lead restringiu a edição à seção QA Results.'
+
+revision_history:
+  - date: '2026-10-29'
+    gate: CONCERNS
+    reason: 'Review inicial: A11Y-001 (medium); REQ-001, REQ-002, UX-001, MNT-001, PROC-001 e PROC-002 (low)'

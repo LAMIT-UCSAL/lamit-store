@@ -28,3 +28,6 @@ Thumbs.db
 .claude/settings.local.json
 .aiox/install-log.txt
 .originkit/
+
+# Taste skill (working files)
+.taste-skill/

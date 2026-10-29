@@ -53,6 +53,7 @@ function buildProductCard(product, index) {
   card.className = 'card product-card';
   card.href = `/produtos/${product.id}.html`;
   card.setAttribute('aria-label', `Ver ${product.name}`);
+  card.style.setProperty('--i', index); // atraso da entrada em sequência (css/components.css)
 
   const imageWrap = document.createElement('div');
   imageWrap.className = 'product-card__image-wrap';

@@ -52,6 +52,13 @@ function initReveal() {
     return;
   }
 
+  // Blocos com várias partes (título + texto, etapas, fotos): as partes entram uma depois da outra
+  items.forEach((el) => {
+    if (el.children.length < 2) return;
+    el.classList.add('reveal--stagger');
+    [...el.children].forEach((child, i) => child.style.setProperty('--stagger', i));
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
